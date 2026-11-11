@@ -1,0 +1,17 @@
+---
+import type { Project } from '../data/portfolio';
+import { localPath } from '../data/portfolio';
+interface Props { project: Project; }
+const { project } = Astro.props;
+---
+<div class="film-player">
+  {project.poster && <img src={localPath(project.poster)} alt={project.posterAlt ?? `Fotograma de ${project.title}`} width="1600" height="900" class="film-poster" />}
+  {project.video ? (
+    <div class="playback-controls">
+      <button class="button" data-film data-provider={project.video.provider} data-video={project.video.id} data-title={project.title}>Ver película <span aria-hidden="true">▶</span></button>
+      <p class="small muted">Al reproducir se conecta con {project.video.provider === 'youtube' ? 'YouTube' : project.video.provider === 'vimeo' ? 'Vimeo' : 'Google Drive'}.</p>
+    </div>
+  ) : (
+    <div class="film-unavailable"><span class="eyebrow">Reproducción</span><p>Esta película todavía no está disponible para verla en línea.</p></div>
+  )}
+</div>

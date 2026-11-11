@@ -1,0 +1,22 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import FilmPlayer from '../../components/FilmPlayer.astro';
+import { projects, localPath } from '../../data/portfolio';
+export function getStaticPaths() {
+  return projects.map((project, index) => ({ params: { slug: project.slug }, props: { project, index } }));
+}
+const { project, index } = Astro.props;
+const next = projects[(index + 1) % projects.length];
+---
+<Layout title={`${project.title} — David López Félix`} description={`${project.title}, en el archivo cinematográfico de David López Félix.`} image={project.poster ?? undefined}>
+  <article class="project-page container">
+    <a class="back-link" href={localPath('#obra')}>← Volver al archivo</a>
+    <div class="project-title-row"><h1>{project.title}</h1><span class="eyebrow">{String(index + 1).padStart(2, '0')} / {String(projects.length).padStart(2, '0')}</span></div>
+    {(project.year || project.duration || project.role) && <ul class="metadata">{project.year && <li>{project.year}</li>}{project.duration && <li>{project.duration}</li>}{project.role && <li>{project.role}</li>}</ul>}
+    <FilmPlayer project={project} />
+    {project.synopsis && <section class="synopsis"><h2>Sobre la obra</h2><p>{project.synopsis}</p></section>}
+    {!project.titleConfirmed && <p class="small muted title-note">{project.slug === 'pieza-audiovisual' ? 'Título por confirmar. Duración del archivo, redondeada al segundo.' : 'Título de trabajo tomado del material facilitado.'}</p>}
+    {project.slug === 'pieza-audiovisual' && <section class="still-gallery" aria-label="Fotogramas de la pieza"><img src={localPath('images/pieza-detalle-26.webp')} alt="Fotograma de la pieza audiovisual, con capas de imágenes en blanco y negro." width="1280" height="720" loading="lazy" /><img src={localPath('images/pieza-detalle-40.webp')} alt="Otro fotograma de la misma pieza audiovisual." width="1280" height="720" loading="lazy" /></section>}
+    <a class="next-project" href={localPath(`trabajos/${next.slug}/`)}><span class="eyebrow">Siguiente obra</span><span>{next.title}</span><span aria-hidden="true">↗</span></a>
+  </article>
+</Layout>

@@ -1,0 +1,13 @@
+---
+import type { Project } from '../data/portfolio';
+import { localPath } from '../data/portfolio';
+interface Props { project: Project; index: number; }
+const { project, index } = Astro.props;
+---
+<article class:list={['project-entry', { 'has-poster': Boolean(project.poster) }]}>
+  <a class="project-link" href={localPath(`trabajos/${project.slug}/`)}>
+    {project.poster && <div class="poster-wrap"><img src={localPath(project.poster)} alt={project.posterAlt ?? `Fotograma de ${project.title}`} width="1600" height="900" loading="lazy" /></div>}
+    <div class="project-caption"><span class="project-number">{String(index + 1).padStart(2, '0')}</span><h3>{project.title}</h3><span class="project-arrow" aria-hidden="true">↗</span></div>
+    <div class="project-detail"><span>{project.role ?? 'Ver ficha'}</span>{project.year && <span>{project.year}</span>}{project.duration && <span>{project.duration}</span>}</div>
+  </a>
+</article>
