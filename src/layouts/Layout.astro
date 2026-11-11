@@ -34,7 +34,7 @@ const hasContact = Boolean(profile.email || profile.socialLinks.length);
       <nav aria-label="Navegación principal"><a href={localPath('#obra')}>Obra</a><a href={localPath('#sobre-mi')}>Sobre mí</a>{hasContact && <a href={localPath('#contacto')}>Contacto</a>}</nav>
     </header>
     <main id="contenido"><slot /></main>
-    <footer id="contacto" class="contact-footer container">
+    <footer id="contacto" class:list={['contact-footer', 'container', { 'contact-unconfigured': !hasContact }]}>
       {hasContact && <>
         <p class="eyebrow">Contacto</p>
         {profile.email ? <a class="contact-title" href={`mailto:${profile.email}`}>Hablemos de cine.<span aria-hidden="true">↗</span></a> : <h2 class="contact-title">Hablemos de cine.</h2>}

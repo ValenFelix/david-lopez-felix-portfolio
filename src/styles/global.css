@@ -89,6 +89,8 @@ h1, h2, h3 { font-weight: 400; }
 .social-links { display: flex; gap: 24px; padding: 0; list-style: none; }
 .footer-bottom { display: flex; align-items: center; justify-content: space-between; gap: 16px; border-top: 1px solid var(--line); margin-top: 64px; padding-block: 28px; color: var(--muted); font: 11px/1.6 ui-monospace, monospace; text-transform: uppercase; letter-spacing: .05em; }
 .footer-bottom a { min-height: 44px; display: flex; align-items: center; }
+.contact-footer.contact-unconfigured { padding-top: 0; }
+.contact-unconfigured .footer-bottom { margin-top: 0; border-top: 0; }
 .project-page { padding-top: 48px; padding-bottom: 80px; }
 .back-link { display: inline-flex; min-height: 44px; align-items: center; color: var(--muted); font-size: 14px; }
 .back-link:hover { color: var(--orange); }
