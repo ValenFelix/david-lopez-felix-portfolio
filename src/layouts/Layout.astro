@@ -5,6 +5,7 @@ interface Props { title?: string; description?: string; image?: string; }
 const { title = `${profile.name} — Cine / Portafolio`, description = 'El archivo cinematográfico de David López Félix, estudiante de cine.', image = 'images/david-1080.webp' } = Astro.props;
 const canonical = new URL(Astro.url.pathname, Astro.site);
 const imageUrl = new URL(localPath(image), Astro.site);
+const hasContact = Boolean(profile.email || profile.socialLinks.length);
 ---
 <!doctype html>
 <html lang="es">
@@ -30,13 +31,15 @@ const imageUrl = new URL(localPath(image), Astro.site);
     <a class="skip-link" href="#contenido">Saltar al contenido</a>
     <header class="site-header container">
       <a class="wordmark" href={localPath()} aria-label="David López Félix, inicio">DLF<span>.</span></a>
-      <nav aria-label="Navegación principal"><a href={localPath('#obra')}>Obra</a><a href={localPath('#sobre-mi')}>Sobre mí</a><a href={localPath('#contacto')}>Contacto</a></nav>
+      <nav aria-label="Navegación principal"><a href={localPath('#obra')}>Obra</a><a href={localPath('#sobre-mi')}>Sobre mí</a>{hasContact && <a href={localPath('#contacto')}>Contacto</a>}</nav>
     </header>
     <main id="contenido"><slot /></main>
     <footer id="contacto" class="contact-footer container">
-      <p class="eyebrow">Contacto</p>
-      {profile.email ? <a class="contact-title" href={`mailto:${profile.email}`}>Hablemos de cine.<span aria-hidden="true">↗</span></a> : <h2 class="contact-title">Hablemos de cine.</h2>}
-      {profile.email ? <a class="contact-email" href={`mailto:${profile.email}`}>{profile.email}</a> : <p class="muted small">El contacto se incorporará próximamente.</p>}
+      {hasContact && <>
+        <p class="eyebrow">Contacto</p>
+        {profile.email ? <a class="contact-title" href={`mailto:${profile.email}`}>Hablemos de cine.<span aria-hidden="true">↗</span></a> : <h2 class="contact-title">Hablemos de cine.</h2>}
+        {profile.email && <a class="contact-email" href={`mailto:${profile.email}`}>{profile.email}</a>}
+      </>}
       {profile.socialLinks.length > 0 && <ul class="social-links">{profile.socialLinks.map(link => <li><a href={link.url} rel="noopener noreferrer" target="_blank">{link.label} ↗</a></li>)}</ul>}
       <div class="footer-bottom"><span>David López Félix</span><span>Cine / {new Date().getFullYear()}</span><a href={localPath()}>Volver al inicio ↑</a></div>
     </footer>
