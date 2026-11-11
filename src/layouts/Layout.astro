@@ -58,16 +58,47 @@ const links = [
     >
     <script is:inline define:vars={{ isHome: home }}>
       try {
+        const motionPreference = matchMedia("(prefers-reduced-motion: reduce)");
         if (
           isHome &&
           !sessionStorage.getItem("dlf-entered") &&
-          !matchMedia("(prefers-reduced-motion: reduce)").matches
+          !motionPreference.matches
         ) {
+          sessionStorage.setItem("dlf-entered", "1");
+          // CSS owns the 2.5 s sequence; readiness of the poster never shortens it.
+          const finish = () => {
+            document.documentElement.classList.remove("projection-intro");
+            window.clearTimeout(safetyTimer);
+            document.removeEventListener("animationend", onAnimationEnd);
+            document.removeEventListener("click", onSkip);
+            motionPreference.removeEventListener("change", onPreference);
+            window.removeEventListener("pagehide", finish);
+          };
+          const onAnimationEnd = (event) => {
+            if (
+              event.animationName === "projection-open" &&
+              event.target instanceof Element &&
+              event.target.classList.contains("gate-shutter")
+            )
+              finish();
+          };
+          const onSkip = (event) => {
+            if (
+              event.target instanceof Element &&
+              event.target.closest(".gate-skip")
+            )
+              finish();
+          };
+          const onPreference = () => {
+            if (motionPreference.matches) finish();
+          };
+          // Emergency exit only: comfortably after the full mask has opened.
+          const safetyTimer = window.setTimeout(finish, 4500);
+          document.addEventListener("animationend", onAnimationEnd);
+          document.addEventListener("click", onSkip);
+          motionPreference.addEventListener("change", onPreference);
+          window.addEventListener("pagehide", finish, { once: true });
           document.documentElement.classList.add("projection-intro");
-          window.setTimeout(
-            () => document.documentElement.classList.remove("projection-intro"),
-            1800,
-          );
         }
       } catch {}
     </script>
@@ -91,7 +122,7 @@ const links = [
               </>
             </div>
             <button class="gate-skip" type="button">
-              Omitir apertura ↗
+              Omitir apertura
             </button>
           </>
         </div>
@@ -133,36 +164,25 @@ const links = [
           class="text-button">Cerrar ×</button
         >
       </div><nav aria-label="Navegación móvil">
-        {
-          links.map((link) => (
-            <a href={localPath(link.path)}>
-              {link.label}
-              <span aria-hidden="true">↗</span>
-            </a>
-          ))
-        }
+        {links.map((link) => <a href={localPath(link.path)}>{link.label}</a>)}
       </nav><a
         class="menu-instagram"
         href={profile.socialLinks[0].url}
         target="_blank"
-        rel="noopener noreferrer"
-        >Instagram / {profile.socialLinks[0].label} ↗</a
+        rel="noopener noreferrer">Instagram / {profile.socialLinks[0].label}</a
       >
     </dialog>
     <main id="contenido"><slot /></main>
     <footer class="site-footer container">
       <div class="footer-top">
         <a href={localPath("contacto/")} class="footer-invitation"
-          >Hablemos<br />de cine<span class="accent">.</span><span
-            class="footer-arrow"
-            aria-hidden="true">↗</span
-          ></a
+          >Hablemos<br />de cine<span class="accent">.</span></a
         ><ContactDetails />
       </div>
       <div class="footer-bottom">
         <a href={localPath()}>David López Félix</a><span
           >Cine / {new Date().getFullYear()}</span
-        ><a href="#contenido">Volver arriba ↑</a>
+        ><a href="#contenido">Volver arriba</a>
       </div>
     </footer>
     <dialog class="cinema" aria-labelledby="cinema-title">
@@ -180,7 +200,7 @@ const links = [
         <p id="cinema-status" role="status">Cargando reproductor…</p><a
           id="cinema-external"
           target="_blank"
-          rel="noopener noreferrer">Abrir en el proveedor ↗</a
+          rel="noopener noreferrer">Abrir en el proveedor</a
         >
       </div>
     </dialog>

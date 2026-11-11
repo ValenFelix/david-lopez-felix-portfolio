@@ -18,12 +18,13 @@ const next = projects[(index + 1) % projects.length];
   image={project.poster ?? undefined}
 >
   <article class="project-page container">
-    <a class="back-link" href={localPath("obra/")}>← Archivo de obra</a>
+    <a class="back-link" href={localPath("obra/")}>Volver al archivo</a>
     <div class="project-title-row">
       <h1>{project.title}</h1><span class="eyebrow"
         >{String(index + 1).padStart(2, "0")} / {
           String(projects.length).padStart(2, "0")
-        }</span>
+        }</span
+      >
     </div>
     <ul class="metadata">
       {project.duration && <li>{project.duration}</li>}{
@@ -71,9 +72,7 @@ const next = projects[(index + 1) % projects.length];
       )
     }
     <a class="next-project" href={localPath(`trabajos/${next.slug}/`)}
-      ><span class="eyebrow">Siguiente obra</span><span>{next.title}</span><span
-        aria-hidden="true">↗</span
-      ></a
+      ><span class="eyebrow">Siguiente obra</span><span>{next.title}</span></a
     >
   </article>
 </Layout>

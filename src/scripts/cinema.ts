@@ -42,7 +42,7 @@ if (dialog && screen && title && status && external) {
       "La película completa no se pudo reproducir en este navegador.";
     if (fallbackPreview) {
       external.href = fallbackPreview;
-      external.textContent = "Ver fragmento en otra pestaña ↗";
+      external.textContent = "Ver fragmento en otra pestaña";
       external.hidden = false;
     }
   };
@@ -152,7 +152,7 @@ if (dialog && screen && title && status && external) {
         }
         video.src = source;
         external.href = source;
-        external.textContent = "Abrir vídeo en otra pestaña ↗";
+        external.textContent = "Abrir vídeo en otra pestaña";
         external.hidden = false;
         playVideo(video);
         return;
@@ -184,7 +184,7 @@ if (dialog && screen && title && status && external) {
         iframe.src = urls.embed;
         screen.append(iframe);
         external.href = urls.external;
-        external.textContent = `Abrir en ${urls.label} ↗`;
+        external.textContent = `Abrir en ${urls.label}`;
         external.hidden = false;
       } catch {
         status.textContent =

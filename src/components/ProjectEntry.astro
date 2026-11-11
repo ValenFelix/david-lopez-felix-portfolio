@@ -37,13 +37,13 @@ const { project, index } = Astro.props;
           />
         )
       }
-      <span class="cover-action" aria-hidden="true">Ver obra ↗</span>
+      <span class="cover-action" aria-hidden="true">Ver obra</span>
     </div>
     <div class="project-caption">
       <span class="project-number">{String(index + 1).padStart(2, "0")}</span
       ><h3>{project.title}</h3><span class="project-duration"
         >{project.duration}</span
-      ><span class="project-arrow" aria-hidden="true">↗</span>
+      >
     </div>
     {project.role && <p class="project-role">{project.role}</p>}
   </a>

@@ -4,23 +4,6 @@ const connection = (
 ).connection;
 const allowMotion = () => !reduced.matches && !connection?.saveData;
 
-const gate = document.querySelector<HTMLElement>(".projection-gate");
-if (gate) {
-  const leave = () =>
-    document.documentElement.classList.remove("projection-intro");
-  gate.querySelector("button")?.addEventListener("click", leave);
-  try {
-    sessionStorage.setItem("dlf-entered", "1");
-  } catch {}
-  const image = document.querySelector<HTMLImageElement>(".hero-poster");
-  const ready = image?.decode().catch(() => {}) ?? Promise.resolve();
-  void ready.then(() => {
-    gate.classList.add("gate-opening");
-    setTimeout(leave, 900);
-  });
-  setTimeout(leave, 1800);
-}
-
 const menu = document.querySelector<HTMLDialogElement>("#mobile-menu");
 const menuTrigger = document.querySelector<HTMLButtonElement>(".menu-toggle");
 if (menu && menuTrigger) {
@@ -62,15 +45,15 @@ if (hero && pause) {
     try {
       await hero.play();
     } catch {
-      pause.textContent = "Reproducir imagen ▷";
+      pause.textContent = "Reanudar video";
     }
   };
   hero.addEventListener("playing", () => {
     hero.classList.add("is-playing");
-    pause.textContent = "Pausar imagen Ⅱ";
+    pause.textContent = "Pausar video";
   });
   hero.addEventListener("pause", () => {
-    pause.textContent = "Reanudar imagen ▷";
+    pause.textContent = "Reanudar video";
   });
   hero.addEventListener("error", () => {
     hero.classList.remove("is-playing");

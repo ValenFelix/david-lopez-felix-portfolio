@@ -78,6 +78,34 @@ button {
 a:hover {
   color: var(--orange);
 }
+:where(
+  .all-work,
+  .line-link,
+  .contact-details a,
+  .footer-bottom a,
+  .menu-instagram,
+  .back-link,
+  .next-project
+) {
+  text-decoration: underline;
+  text-decoration-color: transparent;
+  text-decoration-thickness: 1px;
+  text-underline-offset: 0.3em;
+  transition:
+    color 0.3s,
+    text-decoration-color 0.3s;
+}
+:where(
+  .all-work,
+  .line-link,
+  .contact-details a,
+  .footer-bottom a,
+  .menu-instagram,
+  .back-link,
+  .next-project
+):is(:hover, :focus-visible) {
+  text-decoration-color: currentColor;
+}
 .accent {
   color: var(--orange);
 }
@@ -205,12 +233,6 @@ a:hover {
     500 52px "Bodoni Moda",
     serif;
 }
-.mobile-menu nav a span {
-  color: var(--orange);
-  font:
-    32px Manrope,
-    sans-serif;
-}
 .menu-instagram {
   font-size: 14px;
   min-height: 44px;
@@ -276,26 +298,25 @@ a:hover {
   bottom: 145px;
   display: flex;
   align-items: center;
-  gap: 28px;
+  min-height: 44px;
+  width: max-content;
+  padding-block: 12px;
   font-size: 15px;
   line-height: 1.4;
 }
-.round-arrow {
-  border: 1px solid var(--orange);
-  width: 64px;
-  height: 64px;
-  display: grid;
-  place-items: center;
-  font-size: 30px;
-  color: var(--orange);
-  border-radius: 50%;
-  transition:
-    background 0.3s,
-    color 0.3s;
+.hero-access::after {
+  content: "";
+  position: absolute;
+  inset-inline: 0;
+  bottom: 8px;
+  height: 1px;
+  background: currentColor;
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 0.3s ease;
 }
-.hero-access:hover .round-arrow {
-  background: var(--orange);
-  color: var(--navy);
+.hero-access:is(:hover, :focus-visible)::after {
+  transform: scaleX(1);
 }
 .hero-bottom {
   position: absolute;
@@ -320,9 +341,10 @@ a:hover {
   margin-left: auto;
 }
 .hero-bottom > a {
-  font-size: 28px;
-  min-width: 44px;
-  text-align: right;
+  font-size: 12px;
+  min-height: 44px;
+  display: inline-flex;
+  align-items: center;
 }
 .home-selection {
   padding-top: 112px;
@@ -422,10 +444,6 @@ a:hover {
   color: var(--muted);
   margin-left: auto;
 }
-.project-arrow {
-  font-size: 28px;
-  color: var(--orange);
-}
 .project-role {
   color: var(--muted);
   font-size: 13px;
@@ -442,10 +460,6 @@ a:hover {
   padding: 24px 0;
   font-size: 18px;
 }
-.all-work span:last-child {
-  color: var(--orange);
-  font-size: 36px;
-}
 .page-kicker {
   display: flex;
   justify-content: space-between;
@@ -453,9 +467,6 @@ a:hover {
   padding-top: 48px;
   color: var(--muted);
   margin-bottom: 24px;
-}
-.page-kicker > .accent {
-  font-size: 32px;
 }
 .page-title {
   font-size: clamp(70px, 10vw, 160px);
@@ -524,9 +535,6 @@ a:hover {
   padding-block: 12px;
   font-size: 14px;
 }
-.line-link span {
-  color: var(--orange);
-}
 .profile-copy .contact-details {
   margin-top: 64px;
 }
@@ -555,9 +563,6 @@ a:hover {
   display: flex;
   align-items: center;
   gap: 24px;
-}
-.contact-details a span {
-  color: var(--orange);
 }
 .provisional {
   font-size: 12px;
@@ -602,14 +607,6 @@ a:hover {
   line-height: 1.1;
   position: relative;
   max-width: 700px;
-}
-.footer-arrow {
-  font-family: Manrope, sans-serif;
-  color: var(--orange);
-  font-size: 60px;
-  position: absolute;
-  right: 20px;
-  bottom: 12px;
 }
 .footer-bottom {
   display: flex;
@@ -726,9 +723,6 @@ a:hover {
     500 clamp(32px, 4vw, 60px) "Bodoni Moda",
     serif;
 }
-.next-project > span:last-child {
-  color: var(--orange);
-}
 .not-found {
   padding-block: 96px;
 }
@@ -811,6 +805,8 @@ a:hover {
   text-decoration: underline;
 }
 .projection-gate {
+  --gate-hold: 0.3s;
+  --gate-opening: 2.2s;
   position: fixed;
   inset: 0;
   z-index: 100;
@@ -823,27 +819,38 @@ a:hover {
 .gate-shutter {
   position: absolute;
   background: var(--navy);
-  transition: transform 0.85s cubic-bezier(0.65, 0, 0.2, 1);
+}
+.projection-intro .gate-shutter {
+  animation: projection-open var(--gate-opening) cubic-bezier(0.65, 0, 0.2, 1)
+    var(--gate-hold) forwards;
 }
 .gate-top {
+  --gate-x: 0%;
+  --gate-y: -100%;
   left: 0;
   right: 0;
   top: 0;
   height: calc(50% - 48px);
 }
 .gate-bottom {
+  --gate-x: 0%;
+  --gate-y: 100%;
   left: 0;
   right: 0;
   bottom: 0;
   height: calc(50% - 48px);
 }
 .gate-left {
+  --gate-x: -100%;
+  --gate-y: 0%;
   left: 0;
   top: calc(50% - 48px);
   bottom: calc(50% - 48px);
   width: calc(50% - 80px);
 }
 .gate-right {
+  --gate-x: 100%;
+  --gate-y: 0%;
   right: 0;
   top: calc(50% - 48px);
   bottom: calc(50% - 48px);
@@ -862,7 +869,6 @@ a:hover {
   align-items: center;
   justify-content: center;
   background: #081426a0;
-  transition: opacity 0.25s;
   line-height: 1.2;
 }
 .gate-mark > span {
@@ -900,24 +906,24 @@ a:hover {
   font-size: 12px;
   min-height: 44px;
 }
-.gate-opening .gate-top {
-  transform: translateY(-100%);
+.projection-intro .gate-mark {
+  animation: projection-fade 0.65s ease var(--gate-hold) forwards;
 }
-.gate-opening .gate-bottom {
-  transform: translateY(100%);
+.projection-intro .gate-skip {
+  animation: projection-fade 0.2s ease 2.3s forwards;
 }
-.gate-opening .gate-left {
-  transform: translateX(-100%);
+@keyframes projection-open {
+  from {
+    transform: translate(0, 0);
+  }
+  to {
+    transform: translate(var(--gate-x), var(--gate-y));
+  }
 }
-.gate-opening .gate-right {
-  transform: translateX(100%);
-}
-.gate-opening .gate-mark {
-  opacity: 0;
-}
-.gate-opening .gate-skip {
-  opacity: 0;
-  transition: opacity 0.6s;
+@keyframes projection-fade {
+  to {
+    opacity: 0;
+  }
 }
 .hero-identity h1 span {
   animation: title-enter 0.8s cubic-bezier(0.2, 0.7, 0.3, 1) both;
@@ -1045,22 +1051,14 @@ a:hover {
   }
   .hero-access {
     left: 20px;
-    right: 20px;
+    right: auto;
     bottom: 68px;
     justify-content: space-between;
     gap: 16px;
     font-size: 13px;
   }
-  .hero-access br {
-    display: none;
-  }
   .hero-picture video {
     object-position: center;
-  }
-  .round-arrow {
-    width: 46px;
-    height: 46px;
-    font-size: 24px;
   }
   .hero-bottom {
     bottom: 12px;
@@ -1109,9 +1107,6 @@ a:hover {
   }
   .project-duration {
     font-size: 11px;
-  }
-  .project-arrow {
-    font-size: 23px;
   }
   .project-number {
     font-size: 10px;
@@ -1202,10 +1197,6 @@ a:hover {
   }
   .footer-invitation {
     font-size: 52px;
-  }
-  .footer-arrow {
-    font-size: 44px;
-    right: 0;
   }
   .contact-details {
     gap: 24px;

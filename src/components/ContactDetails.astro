@@ -7,8 +7,8 @@ import { profile } from "../data/portfolio";
     <span class="eyebrow">Instagram</span><a
       href={profile.socialLinks[0].url}
       target="_blank"
-      rel="noopener noreferrer"
-      >{profile.socialLinks[0].label} <span aria-hidden="true">↗</span></a>
+      rel="noopener noreferrer">{profile.socialLinks[0].label}</a
+    >
   </div>
   <div>
     <span class="eyebrow">Correo</span>{
@@ -22,7 +22,7 @@ import { profile } from "../data/portfolio";
           </>
         </>
       ) : (
-        <a href={`mailto:${profile.email}`}>{profile.email} ↗</a>
+        <a href={`mailto:${profile.email}`}>{profile.email}</a>
       )
     }
   </div>
