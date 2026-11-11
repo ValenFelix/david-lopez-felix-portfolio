@@ -2,7 +2,7 @@
 
 Portafolio cinematográfico estático realizado con Astro, TypeScript y CSS. Diseño en azul noche, marfil y naranja, con Manrope e Instrument Serif autoalojadas.
 
-Sitio público previsto en https://valenfelix.github.io/david-lopez-felix-portfolio/.
+Sitio público en https://valenfelix.github.io/david-lopez-felix-portfolio/.
 
 ## Desarrollo
 
@@ -22,6 +22,8 @@ El servidor muestra la dirección local con la base `/david-lopez-felix-portfoli
 ## Contenido
 
 `src/data/portfolio.ts` contiene el perfil, contacto y las obras. Los datos desconocidos se representan con `null`. Los cinco títulos provenientes de nombres de archivo se identifican como títulos de trabajo. «Pieza audiovisual» es una descripción de una pieza cuyo título sigue pendiente, con duración observada de aproximadamente 55 segundos. El orden editorial y la obra destacada se editan en este archivo.
+
+El contacto permanece oculto mientras `email` sea `null` y `socialLinks` esté vacío. Al completar esos campos aparecen la sección y su enlace en la navegación.
 
 La fotografía de David se ha convertido a WebP con redimensionado tradicional, sin reconstrucción generativa, retoque facial ni modificación del color. Las tres versiones conservan la composición completa. Los fotogramas de la pieza audiovisual proceden del material suministrado, a los 3, 26 y 40 segundos.
 
