@@ -509,20 +509,14 @@ a:hover {
 }
 .profile-grid {
   display: grid;
-  grid-template-columns: 8fr 4fr;
+  grid-template-columns: minmax(0, 54fr) minmax(0, 46fr);
   gap: 64px;
-  align-items: center;
-}
-.profile-grid figure {
-  align-self: start;
-}
-.profile-copy {
-  padding-top: 12px;
+  align-items: start;
 }
 .profile-biography {
-  font-size: 22px;
-  line-height: 1.5;
-  max-width: 20ch;
+  font-size: clamp(18px, calc(1rem + 0.4vw), 22px);
+  line-height: 1.55;
+  text-wrap: pretty;
   margin-bottom: 36px;
 }
 .profile-biography p + p {
@@ -976,11 +970,8 @@ a:hover {
     bottom: 210px;
   }
   .profile-grid {
-    grid-template-columns: 1.3fr 1fr;
+    grid-template-columns: minmax(0, 53fr) minmax(0, 47fr);
     gap: 32px;
-  }
-  .profile-biography {
-    font-size: 20px;
   }
   .profile-copy .contact-details {
     margin-top: 32px;
@@ -1152,17 +1143,11 @@ a:hover {
     margin-bottom: 36px;
   }
   .profile-grid {
-    display: flex;
-    flex-direction: column;
+    grid-template-columns: minmax(0, 1fr);
     gap: 36px;
   }
-  .profile-copy {
-    width: 100%;
-    padding: 0;
-  }
   .profile-biography {
-    max-width: 24ch;
-    font-size: 20px;
+    font-size: clamp(18px, 5vw, 20px);
   }
   .profile-copy .contact-details {
     margin-top: 40px;
