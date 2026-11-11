@@ -1,18 +1,33 @@
 ---
-import '../styles/global.css';
-import { localPath, profile } from '../data/portfolio';
-interface Props { title?: string; description?: string; image?: string; }
-const { title = `${profile.name} — Cine / Portafolio`, description = 'El archivo cinematográfico de David López Félix, estudiante de cine.', image = 'images/david-1080.webp' } = Astro.props;
+import "../styles/global.css";
+import { localPath, profile } from "../data/portfolio";
+import ContactDetails from "../components/ContactDetails.astro";
+interface Props {
+  title?: string;
+  description?: string;
+  image?: string;
+  home?: boolean;
+}
+const {
+  title = `${profile.name} — Cine`,
+  description = "Películas y piezas audiovisuales de David López Félix.",
+  image = "images/david-1080.webp",
+  home = false,
+} = Astro.props;
 const canonical = new URL(Astro.url.pathname, Astro.site);
-const imageUrl = new URL(localPath(image), Astro.site);
-const hasContact = Boolean(profile.email || profile.socialLinks.length);
+const links = [
+  { label: "Obra", path: "obra/" },
+  { label: "Perfil", path: "perfil/" },
+  { label: "Contacto", path: "contacto/" },
+];
 ---
+
 <!doctype html>
 <html lang="es">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta name="theme-color" content="#0B1D39" />
+    <meta name="theme-color" content="#081426" />
     <title>{title}</title>
     <meta name="description" content={description} />
     <link rel="canonical" href={canonical} />
@@ -21,35 +36,153 @@ const hasContact = Boolean(profile.email || profile.socialLinks.length);
     <meta property="og:title" content={title} />
     <meta property="og:description" content={description} />
     <meta property="og:url" content={canonical} />
-    <meta property="og:image" content={imageUrl} />
+    <meta property="og:image" content={new URL(localPath(image), Astro.site)} />
     <meta name="twitter:card" content="summary_large_image" />
-    <link rel="icon" href={localPath('favicon.svg')} type="image/svg+xml" />
-    <link rel="sitemap" href={localPath('sitemap.xml')} />
-    <link rel="stylesheet" href={localPath('fonts/fonts.css')} />
+    <link rel="icon" href={localPath("favicon.svg")} type="image/svg+xml" />
+    <link rel="sitemap" href={localPath("sitemap.xml")} />
+    <link rel="stylesheet" href={localPath("fonts/manrope.css")} />
+    <link rel="stylesheet" href={localPath("fonts/bodoni.css")} />
+    <noscript
+      ><style is:inline>
+        .menu-toggle {
+          display: none !important;
+        }
+        .desktop-nav {
+          display: flex !important;
+          gap: 16px !important;
+        }
+        .desktop-nav a {
+          font-size: 12px;
+        }
+      </style></noscript
+    >
+    <script is:inline define:vars={{ isHome: home }}>
+      try {
+        if (
+          isHome &&
+          !sessionStorage.getItem("dlf-entered") &&
+          !matchMedia("(prefers-reduced-motion: reduce)").matches
+        ) {
+          document.documentElement.classList.add("projection-intro");
+          window.setTimeout(
+            () => document.documentElement.classList.remove("projection-intro"),
+            1800,
+          );
+        }
+      } catch {}
+    </script>
   </head>
-  <body>
+  <body class:list={{ "home-page": home }}>
     <a class="skip-link" href="#contenido">Saltar al contenido</a>
-    <header class="site-header container">
-      <a class="wordmark" href={localPath()} aria-label="David López Félix, inicio">DLF<span>.</span></a>
-      <nav aria-label="Navegación principal"><a href={localPath('#obra')}>Obra</a><a href={localPath('#sobre-mi')}>Sobre mí</a>{hasContact && <a href={localPath('#contacto')}>Contacto</a>}</nav>
+    {
+      home && (
+        <div class="projection-gate" aria-label="Apertura de la proyección">
+          <>
+            <div class="gate-shutter gate-top" />
+            <div class="gate-shutter gate-bottom" />
+            <div class="gate-shutter gate-left" />
+            <div class="gate-shutter gate-right" />
+            <div class="gate-mark" aria-hidden="true">
+              <>
+                <span>
+                  DLF<span class="accent">.</span>
+                </span>
+                <small>CINE</small>
+              </>
+            </div>
+            <button class="gate-skip" type="button">
+              Omitir apertura ↗
+            </button>
+          </>
+        </div>
+      )
+    }
+    <header class:list={["site-header", { "over-hero": home }]}>
+      <a
+        class="wordmark"
+        href={localPath()}
+        aria-label="David López Félix, inicio">DLF<span>.</span></a
+      >
+      <nav class="desktop-nav" aria-label="Navegación principal">
+        {
+          links.map((link) => (
+            <a
+              href={localPath(link.path)}
+              aria-current={
+                Astro.url.pathname.endsWith(`/${link.path}`)
+                  ? "page"
+                  : undefined
+              }
+            >
+              {link.label}
+            </a>
+          ))
+        }
+      </nav>
+      <button
+        class="menu-toggle"
+        aria-haspopup="dialog"
+        aria-controls="mobile-menu"
+        >Menú <span aria-hidden="true">☰</span></button
+      >
     </header>
+    <dialog id="mobile-menu" class="mobile-menu" aria-label="Menú principal">
+      <div class="menu-top">
+        <span class="wordmark">DLF<span>.</span></span><button
+          id="menu-close"
+          class="text-button">Cerrar ×</button>
+      </div><nav aria-label="Navegación móvil">
+        {
+          links.map((link) => (
+            <a href={localPath(link.path)}>
+              {link.label}
+              <span aria-hidden="true">↗</span>
+            </a>
+          ))
+        }
+      </nav><a
+        class="menu-instagram"
+        href={profile.socialLinks[0].url}
+        target="_blank"
+        rel="noopener noreferrer"
+        >Instagram / {profile.socialLinks[0].label} ↗</a>
+    </dialog>
     <main id="contenido"><slot /></main>
-    <footer id="contacto" class:list={['contact-footer', 'container', { 'contact-unconfigured': !hasContact }]}>
-      {hasContact && <>
-        <p class="eyebrow">Contacto</p>
-        {profile.email ? <a class="contact-title" href={`mailto:${profile.email}`}>Hablemos de cine.<span aria-hidden="true">↗</span></a> : <h2 class="contact-title">Hablemos de cine.</h2>}
-        {profile.email && <a class="contact-email" href={`mailto:${profile.email}`}>{profile.email}</a>}
-      </>}
-      {profile.socialLinks.length > 0 && <ul class="social-links">{profile.socialLinks.map(link => <li><a href={link.url} rel="noopener noreferrer" target="_blank">{link.label} ↗</a></li>)}</ul>}
-      <div class="footer-bottom"><span>David López Félix</span><span>Cine / {new Date().getFullYear()}</span><a href={localPath()}>Volver al inicio ↑</a></div>
+    <footer class="site-footer container">
+      <div class="footer-top">
+        <a href={localPath("contacto/")} class="footer-invitation"
+          >Hablemos<br />de cine<span class="accent">.</span><span
+            class="footer-arrow"
+            aria-hidden="true">↗</span
+          ></a
+        ><ContactDetails />
+      </div>
+      <div class="footer-bottom">
+        <a href={localPath()}>David López Félix</a><span
+          >Cine / {new Date().getFullYear()}</span
+        ><a href="#contenido">Volver arriba ↑</a>
+      </div>
     </footer>
     <dialog class="cinema" aria-labelledby="cinema-title">
-      <div class="cinema-header"><h2 id="cinema-title"></h2><div><button class="text-button" id="cinema-fullscreen">Pantalla completa</button><button class="text-button" id="cinema-close">Cerrar <span aria-hidden="true">×</span></button></div></div>
+      <div class="cinema-header">
+        <h2 id="cinema-title"></h2><div>
+          <button class="text-button" id="cinema-fullscreen"
+            >Pantalla completa</button
+          ><button class="text-button" id="cinema-close"
+            >Cerrar <span aria-hidden="true">×</span></button>
+        </div>
+      </div>
       <div class="cinema-screen"></div>
-      <div class="cinema-footer"><p id="cinema-status" role="status">Cargando reproductor…</p><a id="cinema-external" target="_blank" rel="noopener noreferrer">Abrir en el proveedor ↗</a></div>
+      <div class="cinema-footer">
+        <p id="cinema-status" role="status">Cargando reproductor…</p><a
+          id="cinema-external"
+          target="_blank"
+          rel="noopener noreferrer">Abrir en el proveedor ↗</a>
+      </div>
     </dialog>
     <script>
-      import '../scripts/cinema';
+      import "../scripts/cinema";
+      import "../scripts/motion";
     </script>
   </body>
 </html>

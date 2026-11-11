@@ -1,0 +1,19 @@
+{
+  "duration": 11.97,
+  "width": 1280,
+  "height": 720,
+  "fps": 30.08,
+  "audio": false,
+  "desktop": {
+    "src": "media/hero-desktop.mp4",
+    "bytes": 1694612
+  },
+  "mobile": {
+    "src": "media/hero-mobile.mp4",
+    "width": 640,
+    "height": 360,
+    "bytes": 401369,
+    "duration": 12,
+    "fps": 30
+  }
+}

@@ -1,0 +1,29 @@
+---
+import { profile } from "../data/portfolio";
+---
+
+<div class="contact-details">
+  <div>
+    <span class="eyebrow">Instagram</span><a
+      href={profile.socialLinks[0].url}
+      target="_blank"
+      rel="noopener noreferrer"
+      >{profile.socialLinks[0].label} <span aria-hidden="true">↗</span></a>
+  </div>
+  <div>
+    <span class="eyebrow">Correo</span>{
+      profile.emailProvisional ? (
+        <>
+          <>
+            <span class="email-address">{profile.email}</span>
+            <span class="provisional">
+              Provisional · recepción pendiente de confirmar
+            </span>
+          </>
+        </>
+      ) : (
+        <a href={`mailto:${profile.email}`}>{profile.email} ↗</a>
+      )
+    }
+  </div>
+</div>

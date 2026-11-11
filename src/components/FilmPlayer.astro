@@ -1,17 +1,106 @@
 ---
-import type { Project } from '../data/portfolio';
-import { localPath } from '../data/portfolio';
-interface Props { project: Project; }
+import type { Project } from "../data/portfolio";
+import { localPath } from "../data/portfolio";
+import { playbackUrls } from "../lib/video.mjs";
+interface Props {
+  project: Project;
+}
 const { project } = Astro.props;
+const video = project.video;
+const localVideo = video?.provider === "local" ? video : null;
+const externalVideo =
+  video && video.provider !== "local"
+    ? playbackUrls(video.provider, video.id)
+    : null;
+const playbackLabel =
+  video?.kind === "preview" ? "Ver fragmento" : "Ver película";
+const poster = project.poster ? localPath(project.poster) : undefined;
+const source = localVideo ? localPath(localVideo.src) : undefined;
+const fallbackPreview = localVideo?.fallbackPreview
+  ? localPath(localVideo.fallbackPreview)
+  : undefined;
+const isHls = localVideo?.format === "hls";
 ---
+
 <div class="film-player">
-  {project.poster && <img src={localPath(project.poster)} alt={project.posterAlt ?? `Fotograma de ${project.title}`} width="1600" height="900" class="film-poster" />}
-  {project.video ? (
-    <div class="playback-controls">
-      <button class="button" data-film data-provider={project.video.provider} data-video={project.video.id} data-title={project.title}>Ver película <span aria-hidden="true">▶</span></button>
-      <p class="small muted">Al reproducir se conecta con {project.video.provider === 'youtube' ? 'YouTube' : project.video.provider === 'vimeo' ? 'Vimeo' : 'Google Drive'}.</p>
-    </div>
-  ) : (
-    <div class="film-unavailable"><span class="eyebrow">Reproducción</span><p>Esta película todavía no está disponible para verla en línea.</p></div>
-  )}
+  {
+    poster && (
+      <img
+        src={poster}
+        alt={project.posterAlt ?? `Fotograma de ${project.title}`}
+        width={localVideo?.width ?? 1600}
+        height={localVideo?.height ?? 900}
+        class="film-poster"
+      />
+    )
+  }
+  {
+    video ? (
+      <div class="playback-controls">
+        <button
+          class="button"
+          data-film
+          data-provider={video.provider}
+          data-video={video.provider !== "local" ? video.id : undefined}
+          data-src={source}
+          data-format={localVideo?.format ?? "mp4"}
+          data-fallback-preview={fallbackPreview}
+          data-kind={video.kind}
+          data-poster={poster}
+          data-width={localVideo?.width}
+          data-height={localVideo?.height}
+          data-title={project.title}
+          aria-haspopup="dialog"
+          hidden
+        >
+          {playbackLabel} <span aria-hidden="true">▶</span>
+        </button>
+        {localVideo ? (
+          <p class="small muted">
+            Controles de reproducción y pantalla completa.
+          </p>
+        ) : (
+          <p class="small muted">
+            Al reproducir se conecta con {externalVideo?.label}.
+          </p>
+        )}
+        <noscript>
+          {isHls ? (
+            <>
+              <p class="small muted">
+                Activa JavaScript para reproducir la película completa en este
+                navegador.
+              </p>
+              {fallbackPreview && (
+                <a
+                  class="text-link"
+                  href={fallbackPreview}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  Ver fragmento en otra pestaña ↗
+                </a>
+              )}
+            </>
+          ) : (
+            <a
+              class="text-link"
+              href={source ?? externalVideo?.external}
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              {playbackLabel} en otra pestaña ↗
+            </a>
+          )}
+        </noscript>
+      </div>
+    ) : (
+      <div class="film-unavailable">
+        <>
+          <span class="eyebrow">Reproducción</span>
+          <p>Esta película todavía no está disponible para verla en línea.</p>
+        </>
+      </div>
+    )
+  }
 </div>

@@ -1,64 +1,43 @@
-# David López Félix · Portafolio
+# David López Félix · Sala azul / luz ámbar
 
-Portafolio cinematográfico estático realizado con Astro, TypeScript y CSS. Diseño en azul noche, marfil y naranja, con Manrope e Instrument Serif autoalojadas.
+Portafolio cinematográfico estático con Astro y TypeScript. Inicio, Obra, Perfil, Contacto y seis fichas generan HTML independiente bajo `/david-lopez-felix-portfolio/`.
 
-Sitio público en https://valenfelix.github.io/david-lopez-felix-portfolio/.
+Sitio: https://valenfelix.github.io/david-lopez-felix-portfolio/
 
 ## Desarrollo
 
-Requiere Node.js 24 o posterior.
+Requiere Node.js 24 o posterior. Ejecuta `npm ci`, `npm run dev`, `npm run check`, `npm test`, `npm run build` y `npm run preview`.
 
-```sh
-npm ci
-npm run dev
-npm run check
-npm test
-npm run build
-npm run preview
-```
+La base se configura en `astro.config.mjs`. `SITE_BASE=/` permite otra raíz, pero el despliegue oficial mantiene el prefijo del repositorio. Todas las rutas pasan por `localPath`.
 
-El servidor muestra la dirección local con la base `/david-lopez-felix-portfolio/`. Para desarrollar o compilar en la raíz de un dominio, establece `SITE_BASE=/` en el entorno. Actualiza también `site` en `astro.config.mjs` si cambia el dominio.
+## Dirección y contenido
 
-## Contenido
+Bodoni Moda y Manrope autoalojadas; azul tinta, marfil y acentos naranja. La portada utiliza un montaje silencioso de doce segundos a partir de películas suministradas. La selección editorial de tres obras es independiente del orden de los originales. Obra contiene seis portadas auténticas distintas. La apertura se puede omitir y respeta movimiento reducido. La navegación funciona sin JavaScript.
 
-`src/data/portfolio.ts` contiene el perfil, contacto y las obras. Los datos desconocidos se representan con `null`. Los cinco títulos provenientes de nombres de archivo se identifican como títulos de trabajo. «Pieza audiovisual» es una descripción de una pieza cuyo título sigue pendiente, con duración observada de aproximadamente 55 segundos. El orden editorial y la obra destacada se editan en este archivo.
+`src/data/portfolio.ts` centraliza títulos, estado editorial, duración, créditos comprobados, imágenes, reproductores y contacto. No se publican biografías ni créditos inventados. Solo se conoce que David es estudiante de cine. Los títulos pendientes llevan una nota editorial en su ficha. Los roles publicados se comprobaron en créditos de los originales; los años y sinopsis desconocidos permanecen vacíos.
 
-El contacto permanece oculto mientras `email` sea `null` y `socialLinks` esté vacío. Al completar esos campos aparecen la sección y su enlace en la navegación.
+La fotografía real conserva identidad y composición. Se redimensionó y comprimió a WebP sin IA generativa ni retoque facial. Los fotogramas conservan el color del material suministrado.
 
-La fotografía de David se ha convertido a WebP con redimensionado tradicional, sin reconstrucción generativa, retoque facial ni modificación del color. Las tres versiones conservan la composición completa. Los fotogramas de la pieza audiovisual proceden del material suministrado, a los 3, 26 y 40 segundos.
+## Contacto
 
-## Vídeos
+Instagram activo: https://www.instagram.com/david.lf12/ . El correo `david@contacto.com` se muestra como provisional, sin enlace de envío. Para sustituirlo, cambia `profile.email` en `src/data/portfolio.ts` y, una vez confirmado que recibe mensajes, establece `emailProvisional: false`; el componente activa `mailto:` en Perfil, Contacto y el pie.
 
-La versión inicial incluye fichas y fotogramas. **La reproducción pública está pendiente de enlaces autorizados.** Los archivos de origen requieren autenticación. Sus inventarios, identificadores y enlaces privados se mantienen fuera del repositorio.
+## Medios
 
-Para activar una película, añade al campo `video` de la obra el proveedor y su identificador público. Los proveedores implementados son `youtube`, `vimeo` y, como puente para archivos comprobados públicamente, `drive`.
+Los originales están fuera del repositorio y no se modifican. Se permiten únicamente derivados web en `public/media/`, sin Git LFS. Los manifiestos públicos contienen rutas relativas, tamaños, duraciones y procedencia temporal de fotogramas, sin rutas locales privadas, cookies ni inventarios de Drive.
 
-```ts
-video: { provider: 'youtube', id: 'IDENTIFICADOR_REAL' }
-```
+Esta primera iteración incluye cinco películas MP4 completas (Azul, Comezón, Mujer muñeca, Tallas y la pieza audiovisual) y un fragmento de treinta segundos de Doble. El botón de Doble indica «Ver fragmento». La película completa de Doble está en preparación, todavía no activada en esta iteración.
 
-Verifica el enlace sin iniciar sesión antes de publicarlo. Los vídeos no listados de YouTube son accesibles para quien tenga el enlace. El adaptador de Vimeo admite vídeos con URL numérica pública; si se utiliza un vídeo no listado con hash, hay que añadir soporte para ese parámetro antes de activarlo.
+Los MP4 usan H.264, AAC, píxeles compatibles y faststart; conservan proporción y cadencia. Las películas no se solicitan hasta pulsar reproducir. Solo se activa un preview decorativo a la vez. Hero y previews no tienen audio; se pausan fuera de pantalla o con la pestaña oculta. El reproductor nativo admite pausa, búsqueda, volumen y pantalla completa, y libera el medio al cerrar.
 
-El reproductor se crea únicamente al pulsar «Ver película», en un diálogo con cierre y pantalla completa. Cerrar elimina el iframe y restituye el foco. No se realiza precarga del proveedor. El evento de carga del iframe no demuestra que la película se reproduzca.
-
-Los originales de vídeo se conservan fuera del proyecto. `.gitignore` excluye vídeos, audios, inventarios privados y materiales de producción. No se utiliza Git LFS.
-
-## Imágenes
-
-Los derivados web están en `public/images/`. Para añadir fotogramas a otra obra, exporta versiones WebP de calidad visual alta, utiliza el campo `poster` y describe su contenido mediante `posterAlt`. La interfaz permite el recorte de tarjetas; el reproductor conserva el encuadre proporcionado por el proveedor.
+El modelo también admite fuentes públicas de YouTube, Vimeo o Drive, y HLS local con carga diferida de hls.js. La fuente externa debe comprobarse sin iniciar sesión antes de activarla. No se inventan enlaces. Un fallo muestra una alternativa claramente identificada, no una reproducción supuestamente verificada.
 
 ## Publicación
 
-En GitHub, el repositorio usa **Settings → Pages → GitHub Actions**. El workflow `Publish portfolio` ejecuta instalación reproducible, comprobación de tipos, pruebas y build, y despliega el resultado en Pages. Se inicia manualmente desde **Actions → Publish portfolio → Run workflow**. Los cambios de código requieren otra ejecución del workflow para publicarse.
+Settings → Pages → GitHub Actions. El workflow `Publish portfolio` se ejecuta manualmente desde Actions. Realiza `npm ci`, comprobaciones, pruebas, build y despliegue. Un push por sí solo no publica. Verifica el SHA del run y vuelve a abrir la URL oficial después de cada despliegue.
 
-Las fichas generan directorios HTML reales, por lo que se pueden abrir o recargar directamente. El sitio incluye canonical, Open Graph, sitemap y página 404. Todas las rutas usan la base configurada.
+GitHub Pages limita el sitio a 1 GB y aplica un límite flexible de transferencia de 100 GB/mes; los archivos Git normales deben ser menores de 100 MiB. Se adopta margen inferior a 90 MiB por archivo. Consulta los límites actuales: https://docs.github.com/en/pages/getting-started-with-github-pages/github-pages-limits . Este portafolio no usa Git LFS. Ante crecimiento de tráfico, migra las fuentes completas a alojamiento audiovisual externo.
 
-## Pendientes editoriales
+## Revisión
 
-- Enlaces públicos de reproducción de las seis piezas.
-- Confirmación de títulos, créditos y años de producción.
-- Correo y redes de contacto.
-- Fotogramas de las cinco obras que todavía carecen de imagen.
-- Confirmación de la pieza destacada y del orden del archivo.
-
-Las licencias OFL y procedencia de las fuentes se encuentran en `public/fonts/`. Los materiales audiovisuales permanecen sujetos a los derechos de sus respectivos titulares.
+`VERIFICACION.md` registra qué se ha comprobado realmente. Las capturas y los informes completos se conservan en `qa-local/`, excluido de Git. Las licencias de fuentes están en `public/fonts/`. Los materiales audiovisuales mantienen los derechos de sus titulares.

@@ -1,0 +1,36 @@
+---
+import Layout from "../layouts/Layout.astro";
+import ContactDetails from "../components/ContactDetails.astro";
+import { localPath, profile } from "../data/portfolio";
+---
+
+<Layout title="Perfil — David López Félix">
+  <section class="profile-page container">
+    <div class="page-kicker">
+      <p class="eyebrow">Perfil</p><span class="accent" aria-hidden="true"
+        >↘</span>
+    </div>
+    <h1 class="profile-title">
+      David<br />López Félix<span class="accent">.</span>
+    </h1>
+    <div class="profile-grid">
+      <figure>
+        <img
+          src={localPath("images/david-1600.webp")}
+          srcset={`${localPath("images/david-640.webp")} 640w, ${localPath("images/david-1080.webp")} 1080w, ${localPath("images/david-1600.webp")} 1600w`}
+          sizes="(max-width: 700px) 90vw, 65vw"
+          width="2160"
+          height="1414"
+          alt="David López Félix junto a un lago, con el bosque al fondo."
+          fetchpriority="high"
+        />
+      </figure><div class="profile-copy">
+        <p class="profile-biography">{profile.biography}</p><a
+          class="line-link"
+          href={localPath("obra/")}
+          >Explorar su obra <span aria-hidden="true">↗</span></a
+        ><ContactDetails />
+      </div>
+    </div>
+  </section>
+</Layout>

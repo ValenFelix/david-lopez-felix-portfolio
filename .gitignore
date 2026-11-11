@@ -10,3 +10,4 @@ materials-local/
 *.wav
 *.zip
 qa-local/
+!public/media/*.mp4

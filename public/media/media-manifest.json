@@ -1,0 +1,310 @@
+[
+  {
+    "slug": "azul",
+    "duration": 398.13,
+    "width": 1280,
+    "height": 720,
+    "fps": 30,
+    "poster": "images/rework/azul-1280.webp",
+    "images": [
+      {
+        "path": "images/rework/azul-640.webp",
+        "width": 640,
+        "bytes": 12266,
+        "sourceSecond": 262.77
+      },
+      {
+        "path": "images/rework/azul-1280.webp",
+        "width": 1280,
+        "bytes": 33340,
+        "sourceSecond": 262.77
+      },
+      {
+        "path": "images/rework/azul-detail-1-1280.webp",
+        "width": 1280,
+        "bytes": 97628,
+        "sourceSecond": 167.21
+      },
+      {
+        "path": "images/rework/azul-detail-2-1280.webp",
+        "width": 1280,
+        "bytes": 60498,
+        "sourceSecond": 31.85
+      }
+    ],
+    "preview": "media/azul-preview.mp4",
+    "full": "media/azul-full.mp4",
+    "fragment": null,
+    "fileBytes": {
+      "full": 58650588,
+      "preview": 107300
+    },
+    "derivative": {
+      "name": "azul-full.mp4",
+      "bytes": 58650588,
+      "duration": 398.13,
+      "width": 1280,
+      "height": 720,
+      "fps": 30,
+      "audio": true,
+      "faststart": true
+    }
+  },
+  {
+    "slug": "comezon",
+    "duration": 411.69,
+    "width": 1280,
+    "height": 720,
+    "fps": 30,
+    "poster": "images/rework/comezon-1280.webp",
+    "images": [
+      {
+        "path": "images/rework/comezon-640.webp",
+        "width": 640,
+        "bytes": 21192,
+        "sourceSecond": 74.1
+      },
+      {
+        "path": "images/rework/comezon-1280.webp",
+        "width": 1280,
+        "bytes": 47916,
+        "sourceSecond": 74.1
+      },
+      {
+        "path": "images/rework/comezon-detail-1-1280.webp",
+        "width": 1280,
+        "bytes": 30560,
+        "sourceSecond": 222.31
+      },
+      {
+        "path": "images/rework/comezon-detail-2-1280.webp",
+        "width": 1280,
+        "bytes": 31210,
+        "sourceSecond": 171.91
+      }
+    ],
+    "preview": "media/comezon-preview.mp4",
+    "full": "media/comezon-full.mp4",
+    "fragment": null,
+    "fileBytes": {
+      "full": 39136704,
+      "preview": 121008
+    },
+    "derivative": {
+      "name": "comezon-full.mp4",
+      "bytes": 39136704,
+      "duration": 411.69,
+      "width": 1280,
+      "height": 720,
+      "fps": 30,
+      "audio": true,
+      "faststart": true
+    }
+  },
+  {
+    "slug": "doble",
+    "duration": 1841.18,
+    "width": 1280,
+    "height": 720,
+    "fps": 30,
+    "poster": "images/rework/doble-1280.webp",
+    "images": [
+      {
+        "path": "images/rework/doble-640.webp",
+        "width": 640,
+        "bytes": 48560,
+        "sourceSecond": 331.41
+      },
+      {
+        "path": "images/rework/doble-1280.webp",
+        "width": 1280,
+        "bytes": 170642,
+        "sourceSecond": 331.41
+      },
+      {
+        "path": "images/rework/doble-detail-1-1280.webp",
+        "width": 1280,
+        "bytes": 47704,
+        "sourceSecond": 1215.18
+      },
+      {
+        "path": "images/rework/doble-detail-2-1280.webp",
+        "width": 1280,
+        "bytes": 24362,
+        "sourceSecond": 1436.12
+      }
+    ],
+    "preview": "media/doble-preview.mp4",
+    "full": null,
+    "fragment": "media/doble-fragment.mp4",
+    "fileBytes": {
+      "preview": 302376,
+      "fragment": 7224953
+    }
+  },
+  {
+    "slug": "mujer-muneca",
+    "duration": 359.05,
+    "width": 1280,
+    "height": 720,
+    "fps": 30,
+    "poster": "images/rework/mujer-muneca-1280.webp",
+    "images": [
+      {
+        "path": "images/rework/mujer-muneca-640.webp",
+        "width": 640,
+        "bytes": 15328,
+        "sourceSecond": 28.72
+      },
+      {
+        "path": "images/rework/mujer-muneca-1280.webp",
+        "width": 1280,
+        "bytes": 42838,
+        "sourceSecond": 28.72
+      },
+      {
+        "path": "images/rework/mujer-muneca-detail-1-1280.webp",
+        "width": 1280,
+        "bytes": 30728,
+        "sourceSecond": 64.63
+      },
+      {
+        "path": "images/rework/mujer-muneca-detail-2-1280.webp",
+        "width": 1280,
+        "bytes": 37832,
+        "sourceSecond": 150.8
+      }
+    ],
+    "preview": "media/mujer-muneca-preview.mp4",
+    "full": "media/mujer-muneca-full.mp4",
+    "fragment": null,
+    "fileBytes": {
+      "full": 36586894,
+      "preview": 119646
+    },
+    "derivative": {
+      "name": "mujer-muneca-full.mp4",
+      "bytes": 36586894,
+      "duration": 359.05,
+      "width": 1280,
+      "height": 720,
+      "fps": 30,
+      "audio": true,
+      "faststart": true
+    }
+  },
+  {
+    "slug": "tallas",
+    "duration": 193.23,
+    "width": 1920,
+    "height": 1080,
+    "fps": 23.98,
+    "poster": "images/rework/tallas-1280.webp",
+    "images": [
+      {
+        "path": "images/rework/tallas-640.webp",
+        "width": 640,
+        "bytes": 7058,
+        "sourceSecond": 81.16
+      },
+      {
+        "path": "images/rework/tallas-1280.webp",
+        "width": 1280,
+        "bytes": 18414,
+        "sourceSecond": 81.16
+      },
+      {
+        "path": "images/rework/tallas-1920.webp",
+        "width": 1920,
+        "bytes": 41380,
+        "sourceSecond": 81.16
+      },
+      {
+        "path": "images/rework/tallas-detail-1-1280.webp",
+        "width": 1280,
+        "bytes": 30910,
+        "sourceSecond": 34.78
+      },
+      {
+        "path": "images/rework/tallas-detail-2-1280.webp",
+        "width": 1280,
+        "bytes": 34196,
+        "sourceSecond": 127.53
+      }
+    ],
+    "preview": "media/tallas-preview.mp4",
+    "full": "media/tallas-full.mp4",
+    "fragment": null,
+    "fileBytes": {
+      "full": 12645162,
+      "preview": 82157
+    },
+    "derivative": {
+      "name": "tallas-full.mp4",
+      "bytes": 12645162,
+      "duration": 193.24,
+      "width": 1280,
+      "height": 720,
+      "fps": 23.98,
+      "audio": true,
+      "faststart": true
+    }
+  },
+  {
+    "slug": "pieza-audiovisual",
+    "duration": 54.63,
+    "width": 1920,
+    "height": 1080,
+    "fps": 24,
+    "poster": "images/rework/pieza-audiovisual-1280.webp",
+    "images": [
+      {
+        "path": "images/rework/pieza-audiovisual-640.webp",
+        "width": 640,
+        "bytes": 21884,
+        "sourceSecond": 22.94
+      },
+      {
+        "path": "images/rework/pieza-audiovisual-1280.webp",
+        "width": 1280,
+        "bytes": 64800,
+        "sourceSecond": 22.94
+      },
+      {
+        "path": "images/rework/pieza-audiovisual-1920.webp",
+        "width": 1920,
+        "bytes": 111380,
+        "sourceSecond": 22.94
+      },
+      {
+        "path": "images/rework/pieza-audiovisual-detail-1-1280.webp",
+        "width": 1280,
+        "bytes": 97778,
+        "sourceSecond": 29.5
+      },
+      {
+        "path": "images/rework/pieza-audiovisual-detail-2-1280.webp",
+        "width": 1280,
+        "bytes": 73382,
+        "sourceSecond": 48.07
+      }
+    ],
+    "preview": "media/pieza-audiovisual-preview.mp4",
+    "full": "media/pieza-audiovisual-full.mp4",
+    "fragment": null,
+    "fileBytes": {
+      "full": 11746423,
+      "preview": 299972
+    },
+    "derivative": {
+      "name": "pieza-audiovisual-full.mp4",
+      "bytes": 11746423,
+      "duration": 54.63,
+      "width": 1280,
+      "height": 720,
+      "fps": 24,
+      "audio": true,
+      "faststart": true
+    }
+  }
+]

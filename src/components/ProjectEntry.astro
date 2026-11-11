@@ -1,13 +1,50 @@
 ---
-import type { Project } from '../data/portfolio';
-import { localPath } from '../data/portfolio';
-interface Props { project: Project; index: number; }
+import type { Project } from "../data/portfolio";
+import { localPath } from "../data/portfolio";
+interface Props {
+  project: Project;
+  index: number;
+}
 const { project, index } = Astro.props;
 ---
-<article class:list={['project-entry', { 'has-poster': Boolean(project.poster) }]}>
+
+<article class="project-entry" data-preview-entry data-reveal>
   <a class="project-link" href={localPath(`trabajos/${project.slug}/`)}>
-    {project.poster && <div class="poster-wrap"><img src={localPath(project.poster)} alt={project.posterAlt ?? `Fotograma de ${project.title}`} width="1600" height="900" loading="lazy" /></div>}
-    <div class="project-caption"><span class="project-number">{String(index + 1).padStart(2, '0')}</span><h3>{project.title}</h3><span class="project-arrow" aria-hidden="true">↗</span></div>
-    <div class="project-detail"><span>{project.role ?? 'Ver ficha'}</span>{project.year && <span>{project.year}</span>}{project.duration && <span>{project.duration}</span>}</div>
+    <div class="poster-wrap">
+      {
+        project.poster && (
+          <img
+            src={localPath(project.poster)}
+            srcset={`${localPath(`images/rework/${project.slug}-640.webp`)} 640w, ${localPath(`images/rework/${project.slug}-1280.webp`)} 1280w`}
+            sizes="(max-width:700px) 90vw, 70vw"
+            style={`object-position:${project.focalPoint ?? "50% 50%"}`}
+            alt={project.posterAlt ?? `Fotograma de ${project.title}`}
+            width="1280"
+            height="720"
+            loading="lazy"
+          />
+        )
+      }
+      {
+        project.preview && (
+          <video
+            muted
+            loop
+            playsinline
+            preload="none"
+            data-src={localPath(project.preview)}
+            aria-hidden="true"
+          />
+        )
+      }
+      <span class="cover-action" aria-hidden="true">Ver obra ↗</span>
+    </div>
+    <div class="project-caption">
+      <span class="project-number">{String(index + 1).padStart(2, "0")}</span
+      ><h3>{project.title}</h3><span class="project-duration"
+        >{project.duration}</span
+      ><span class="project-arrow" aria-hidden="true">↗</span>
+    </div>
+    {project.role && <p class="project-role">{project.role}</p>}
   </a>
 </article>

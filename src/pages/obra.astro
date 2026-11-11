@@ -1,0 +1,22 @@
+---
+import Layout from "../layouts/Layout.astro";
+import ProjectEntry from "../components/ProjectEntry.astro";
+import { projects } from "../data/portfolio";
+---
+
+<Layout title="Obra — David López Félix">
+  <section class="work-page container">
+    <div class="page-kicker">
+      <p class="eyebrow">Archivo cinematográfico</p><span class="eyebrow"
+        >{String(projects.length).padStart(2, "0")} piezas</span>
+    </div><h1 class="page-title">La obra<span class="accent">.</span></h1><div
+      class="work-grid"
+    >
+      {
+        projects.map((project, index) => (
+          <ProjectEntry project={project} index={index} />
+        ))
+      }
+    </div>
+  </section>
+</Layout>

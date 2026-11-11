@@ -1,10 +1,8 @@
 # Tipografías
 
-Fuentes obtenidas de Google Fonts el 11 de noviembre de 2026. Se distribuyen los archivos WOFF2 oficiales sin modificar, con sus subconjuntos latin y latin-ext. Las reglas de fonts.css usan rutas relativas, por lo que funcionan bajo una subruta de GitHub Pages.
+El rework carga únicamente Bodoni Moda (500–600) y Manrope variable (400–800), autoalojadas en WOFF2 con subconjuntos latin/latin-ext. Sus hojas `bodoni.css` y `manrope.css` usan rutas relativas y `font-display: swap`.
 
-- Manrope variable, pesos 400–800, estilo normal. Licencia SIL Open Font License 1.1 incluida en Manrope-OFL.txt. Fuente de licencia y metadatos https://github.com/google/fonts/tree/main/ofl/manrope
-- Instrument Serif regular, peso 400, estilo normal. Licencia SIL Open Font License 1.1 incluida en Instrument-Serif-OFL.txt. Fuente de licencia y metadatos https://github.com/google/fonts/tree/main/ofl/instrumentserif
+- Bodoni Moda: https://github.com/google/fonts/tree/main/ofl/bodonimoda ; licencia SIL OFL 1.1 en Bodoni-Moda-OFL.txt. Dos WOFF2: 71 280 bytes.
+- Manrope: https://github.com/google/fonts/tree/main/ofl/manrope ; licencia SIL OFL 1.1 en Manrope-OFL.txt. Dos WOFF2: 39 692 bytes.
 
-Hoja de distribución original https://fonts.googleapis.com/css2?family=Manrope:wght@400..800&family=Instrument+Serif&display=swap
-
-Los cuatro archivos WOFF2 suman 72 328 bytes. La carga por subconjunto depende de los caracteres presentes.
+Distribuciones obtenidas de Google Fonts el 11 de noviembre de 2026, sin modificar los binarios. Los archivos de Instrument Serif de la versión anterior se conservan, pero no se cargan ni se utilizan en esta versión.
