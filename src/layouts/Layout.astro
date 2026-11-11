@@ -101,7 +101,7 @@ const links = [
       <a
         class="wordmark"
         href={localPath()}
-        aria-label="David López Félix, inicio">DLF<span>.</span></a
+        aria-label="DLF. — David López Félix, inicio">DLF<span>.</span></a
       >
       <nav class="desktop-nav" aria-label="Navegación principal">
         {
@@ -130,7 +130,8 @@ const links = [
       <div class="menu-top">
         <span class="wordmark">DLF<span>.</span></span><button
           id="menu-close"
-          class="text-button">Cerrar ×</button>
+          class="text-button">Cerrar ×</button
+        >
       </div><nav aria-label="Navegación móvil">
         {
           links.map((link) => (
@@ -145,7 +146,8 @@ const links = [
         href={profile.socialLinks[0].url}
         target="_blank"
         rel="noopener noreferrer"
-        >Instagram / {profile.socialLinks[0].label} ↗</a>
+        >Instagram / {profile.socialLinks[0].label} ↗</a
+      >
     </dialog>
     <main id="contenido"><slot /></main>
     <footer class="site-footer container">
@@ -169,7 +171,8 @@ const links = [
           <button class="text-button" id="cinema-fullscreen"
             >Pantalla completa</button
           ><button class="text-button" id="cinema-close"
-            >Cerrar <span aria-hidden="true">×</span></button>
+            >Cerrar <span aria-hidden="true">×</span></button
+          >
         </div>
       </div>
       <div class="cinema-screen"></div>
@@ -177,7 +180,8 @@ const links = [
         <p id="cinema-status" role="status">Cargando reproductor…</p><a
           id="cinema-external"
           target="_blank"
-          rel="noopener noreferrer">Abrir en el proveedor ↗</a>
+          rel="noopener noreferrer">Abrir en el proveedor ↗</a
+        >
       </div>
     </dialog>
     <script>

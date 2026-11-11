@@ -116,13 +116,21 @@ if (hero && pause) {
 }
 
 let activePreview: HTMLVideoElement | null = null;
+const previewVisibility = new IntersectionObserver((entries) => {
+  for (const entry of entries) {
+    if (entry.isIntersecting) continue;
+    const video = entry.target.querySelector("video");
+    video?.pause();
+    video?.classList.remove("is-playing");
+  }
+});
 for (const entry of document.querySelectorAll<HTMLElement>(
   "[data-preview-entry]",
 )) {
   const video = entry.querySelector<HTMLVideoElement>("video");
   if (!video) continue;
   const start = async () => {
-    if (!allowMotion()) return;
+    if (!allowMotion() || document.hidden) return;
     if (activePreview && activePreview !== video) {
       activePreview.pause();
       activePreview.classList.remove("is-playing");
@@ -149,6 +157,7 @@ for (const entry of document.querySelectorAll<HTMLElement>(
   });
   entry.addEventListener("focusout", stop);
   video.addEventListener("error", stop);
+  previewVisibility.observe(entry);
 }
 
 if (!reduced.matches && "IntersectionObserver" in window) {

@@ -1054,6 +1054,9 @@ a:hover {
   .hero-access br {
     display: none;
   }
+  .hero-picture video {
+    object-position: center;
+  }
   .round-arrow {
     width: 46px;
     height: 46px;

@@ -11,3 +11,4 @@ materials-local/
 *.zip
 qa-local/
 !public/media/*.mp4
+!public/media/doble/init.mp4

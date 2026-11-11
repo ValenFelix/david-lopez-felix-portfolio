@@ -10,10 +10,11 @@
   },
   "mobile": {
     "src": "media/hero-mobile.mp4",
-    "width": 640,
-    "height": 360,
-    "bytes": 401369,
+    "width": 480,
+    "height": 640,
+    "bytes": 586627,
     "duration": 12,
-    "fps": 30
+    "fps": 30,
+    "objectPosition": "center"
   }
 }

@@ -209,7 +209,7 @@ if (dialog && screen && title && status && external) {
     ?.addEventListener("click", async () => {
       try {
         if (document.fullscreenElement) await document.exitFullscreen();
-        else await dialog.requestFullscreen();
+        else await document.documentElement.requestFullscreen();
       } catch {
         status.textContent =
           "Usa el botón de pantalla completa del reproductor.";

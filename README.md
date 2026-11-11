@@ -26,7 +26,7 @@ Instagram activo: https://www.instagram.com/david.lf12/ . El correo `david@conta
 
 Los originales están fuera del repositorio y no se modifican. Se permiten únicamente derivados web en `public/media/`, sin Git LFS. Los manifiestos públicos contienen rutas relativas, tamaños, duraciones y procedencia temporal de fotogramas, sin rutas locales privadas, cookies ni inventarios de Drive.
 
-Esta primera iteración incluye cinco películas MP4 completas (Azul, Comezón, Mujer muñeca, Tallas y la pieza audiovisual) y un fragmento de treinta segundos de Doble. El botón de Doble indica «Ver fragmento». La película completa de Doble está en preparación, todavía no activada en esta iteración.
+Las seis películas completas están integradas: cinco MP4 (Azul, Comezón, Mujer muñeca, Tallas y la pieza audiovisual) y Doble mediante HLS de vídeo bajo demanda. Doble conserva sus 30:41 con 307 segmentos de unos seis segundos: se solicitan progresivamente al reproducir y al buscar. El fragmento MP4 de 30 s permanece como alternativa explícita si HLS no es compatible o falla. Nunca se presenta ese fragmento como película completa.
 
 Los MP4 usan H.264, AAC, píxeles compatibles y faststart; conservan proporción y cadencia. Las películas no se solicitan hasta pulsar reproducir. Solo se activa un preview decorativo a la vez. Hero y previews no tienen audio; se pausan fuera de pantalla o con la pestaña oculta. El reproductor nativo admite pausa, búsqueda, volumen y pantalla completa, y libera el medio al cerrar.
 

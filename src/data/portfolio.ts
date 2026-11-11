@@ -148,8 +148,10 @@ export const projects: Project[] = [
     synopsis: null,
     video: {
       provider: "local",
-      src: "media/doble-fragment.mp4",
-      kind: "preview",
+      src: "media/doble/index.m3u8",
+      format: "hls",
+      fallbackPreview: "media/doble-fragment.mp4",
+      kind: "full",
       width: 1280,
       height: 720,
     },
