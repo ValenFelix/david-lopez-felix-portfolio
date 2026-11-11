@@ -68,4 +68,4 @@ Los informes locales excluidos de Git están en `qa-local/`:
 - `rework/recording-public-final/recorrido-portafolio.mp4`: grabación real de apertura, Obra/hover, Perfil, Contacto, reproducción/búsqueda de Azul y cierre; sin audio capturado.
 - `reduced-navigation-report.json`: comprobación explícita de transiciones y movimiento reducido.
 
-El correo sigue siendo provisional y varias denominaciones editoriales esperan confirmación. No son fallos de publicación ni se han completado con datos inventados. El sitio y los seis reproductores están publicados y verificados.
+En esta revisión, varias denominaciones editoriales esperaban confirmación. El sitio y los seis reproductores se publicaron y verificaron. AJUSTES.md describe la actualización posterior del contacto y de la portada.

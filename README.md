@@ -12,15 +12,15 @@ La base se configura en `astro.config.mjs`. `SITE_BASE=/` permite otra raíz, pe
 
 ## Dirección y contenido
 
-Bodoni Moda y Manrope autoalojadas; azul tinta, marfil y acentos naranja. La portada utiliza un montaje silencioso de doce segundos a partir de películas suministradas. La selección editorial de tres obras es independiente del orden de los originales. Obra contiene seis portadas auténticas distintas. La apertura conserva su diseño y dura 2,5 segundos: 0,3 de presentación y 2,2 de apertura de máscara. Se completa mediante el evento de fin de animación, independientemente de la carga del póster; su seguridad excepcional es de 4,5 segundos. Se puede omitir desde el principio, aparece una vez por sesión y muestra la página inmediatamente con movimiento reducido. La navegación funciona sin JavaScript. Los enlaces utilizan texto y subrayados, sin flechas ni símbolos personalizados de reproducción.
+Bodoni Moda y Manrope autoalojadas; azul tinta, marfil y acentos naranja. La portada utiliza un montaje silencioso de doce segundos a partir de películas suministradas. La selección editorial de tres obras es independiente del orden de los originales. Obra contiene seis portadas auténticas distintas. La apertura conserva su diseño y dura 3,5 segundos: 0,3 de presentación y 3,2 de apertura de máscara. Se completa mediante el evento de fin de animación, independientemente de la carga del póster; su seguridad excepcional es de 5,5 segundos. Se puede omitir desde el principio, aparece una vez por sesión y muestra la página inmediatamente con movimiento reducido. La navegación funciona sin JavaScript. Los enlaces utilizan texto y subrayados, sin flechas ni símbolos personalizados de reproducción.
 
-`src/data/portfolio.ts` centraliza títulos, estado editorial, duración, créditos comprobados, imágenes, reproductores y contacto. No se publican biografías ni créditos inventados. Solo se conoce que David es estudiante de cine. Los títulos pendientes llevan una nota editorial en su ficha. Los roles publicados se comprobaron en créditos de los originales; los años y sinopsis desconocidos permanecen vacíos.
+`src/data/portfolio.ts` centraliza la biografía suministrada para el perfil, los títulos, estado editorial, duración, créditos comprobados, imágenes, reproductores y contacto. Los títulos pendientes llevan una nota editorial en su ficha. Los roles publicados se comprobaron en créditos de los originales; los años y sinopsis desconocidos permanecen vacíos.
 
 La fotografía real conserva identidad y composición. Se redimensionó y comprimió a WebP sin IA generativa ni retoque facial. Los fotogramas conservan el color del material suministrado.
 
 ## Contacto
 
-Instagram activo: https://www.instagram.com/david.lf12/ . El correo `david@contacto.com` se muestra como provisional, sin enlace de envío. Para sustituirlo, cambia `profile.email` en `src/data/portfolio.ts` y, una vez confirmado que recibe mensajes, establece `emailProvisional: false`; el componente activa `mailto:` en Perfil, Contacto y el pie.
+Instagram: https://www.instagram.com/david.lf12/ . El correo oficial es `dlopezf@centro.edu.mx`. `profile.email` y `emailProvisional: false` en `src/data/portfolio.ts` activan el enlace `mailto:` en Perfil, Contacto y el pie.
 
 ## Medios
 

@@ -1,7 +1,7 @@
 {
   "duration": 12,
-  "width": 1280,
-  "height": 720,
+  "width": 1920,
+  "height": 1080,
   "fps": 30,
   "audio": false,
   "codec": "h264",
@@ -9,23 +9,23 @@
   "colorSpace": "bt709",
   "desktop": {
     "src": "media/hero-desktop.mp4",
-    "width": 1280,
-    "height": 720,
+    "width": 1920,
+    "height": 1080,
     "duration": 12,
     "fps": 30,
-    "bytes": 8478241,
-    "averageBitrateKbps": 5652.161,
-    "videoBitrateKbps": 5648
+    "bytes": 20121267,
+    "averageBitrateKbps": 13414.178,
+    "videoBitrateKbps": 13410
   },
   "mobile": {
     "src": "media/hero-mobile.mp4",
-    "width": 540,
-    "height": 720,
+    "width": 1080,
+    "height": 1440,
     "duration": 12,
     "fps": 30,
-    "bytes": 3257199,
-    "averageBitrateKbps": 2171.466,
-    "videoBitrateKbps": 2168,
+    "bytes": 13171927,
+    "averageBitrateKbps": 8781.285,
+    "videoBitrateKbps": 8777,
     "objectPosition": "center"
   },
   "encoding": {
@@ -40,7 +40,8 @@
       "width": 540,
       "height": 720
     },
-    "resampling": "none",
+    "resampling": "spline36",
+    "dithering": "error_diffusion",
     "sharpening": false
   }
 }

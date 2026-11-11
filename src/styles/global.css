@@ -296,6 +296,7 @@ a:hover {
   position: absolute;
   right: var(--gutter);
   bottom: 145px;
+  color: var(--orange);
   display: flex;
   align-items: center;
   min-height: 44px;
@@ -326,19 +327,15 @@ a:hover {
   display: flex;
   align-items: center;
   gap: 32px;
-  justify-content: space-between;
+  justify-content: flex-end;
   font-size: 11px;
   letter-spacing: 0.06em;
-}
-.hero-caption-label {
-  color: var(--muted);
 }
 .hero-pause {
   border: 0;
   background: none;
   min-height: 44px;
   font-size: 12px;
-  margin-left: auto;
 }
 .hero-bottom > a {
   font-size: 12px;
@@ -528,6 +525,9 @@ a:hover {
   max-width: 20ch;
   margin-bottom: 36px;
 }
+.profile-biography p + p {
+  margin-top: 1em;
+}
 .line-link {
   display: flex;
   justify-content: space-between;
@@ -563,11 +563,6 @@ a:hover {
   display: flex;
   align-items: center;
   gap: 24px;
-}
-.provisional {
-  font-size: 12px;
-  color: var(--muted);
-  max-width: 34ch;
 }
 .contact-page {
   padding-bottom: 112px;
@@ -806,7 +801,8 @@ a:hover {
 }
 .projection-gate {
   --gate-hold: 0.3s;
-  --gate-opening: 2.2s;
+  --gate-opening: 3.2s;
+  --gate-skip-fade: 0.2s;
   position: fixed;
   inset: 0;
   z-index: 100;
@@ -907,10 +903,11 @@ a:hover {
   min-height: 44px;
 }
 .projection-intro .gate-mark {
-  animation: projection-fade 0.65s ease var(--gate-hold) forwards;
+  animation: projection-fade 0.95s ease var(--gate-hold) forwards;
 }
 .projection-intro .gate-skip {
-  animation: projection-fade 0.2s ease 2.3s forwards;
+  animation: projection-fade var(--gate-skip-fade) ease
+    calc(var(--gate-hold) + var(--gate-opening) - var(--gate-skip-fade)) forwards;
 }
 @keyframes projection-open {
   from {

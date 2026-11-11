@@ -1,5 +1,15 @@
 # Ajustes de apertura, nitidez y enlaces
 
+## Ajustes finales
+
+Se sustituyeron las tomas suaves del montaje por planos más enfocados de las mismas películas. Las cuatro fuentes disponibles en la carpeta de materiales son copias HEVC de 1280×720. La comparación de los mismos instantes confirmó que la exportación publicada ya conservaba el detalle disponible. En la prueba a 390×844 y DPR 3, el vídeo de 540×720 cubría 1170×1572 píxeles físicos, una ampliación de 2,18 veces en el navegador. La exportación de 1080×1440 reduce el escalado que hace el navegador a 1,09. El escalado previo no añade detalle nativo; la mejora de detalle viene de la selección de tomas. Se conserva el plano de Doble y se mantienen los 12 s, 30 fps y bucle sin audio. Las características finales están en MEDIOS.md.
+
+La apertura de 3,5 s mantiene la presentación de 0,3 s y dedica el segundo adicional a abrir la máscara. El desvanecimiento se acompasa con la apertura y la salida de seguridad es de 5,5 s. Se conserva la opción de omitir, la aparición una vez por sesión y la preferencia de movimiento reducido.
+
+«Explorar la obra» usa el naranja de acento en todos los estados, con el mismo subrayado en hover y foco. Se retiró el rótulo inferior y se mantuvo el control de reproducción. Perfil presenta los dos párrafos suministrados. Perfil, Contacto y pie usan el nuevo correo oficial con `mailto:`.
+
+## Revisión anterior (`0dc9c19`)
+
 Actualización puntual del 11 de noviembre de 2026. Se conserva el diseño cinematográfico aprobado: composición, paleta, fuentes, estructura, fotografía y películas. La versión pública `a481889` se abrió y grabó antes de modificarla.
 
 ## Apertura de 2,5 segundos

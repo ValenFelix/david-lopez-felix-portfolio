@@ -65,7 +65,7 @@ const links = [
           !motionPreference.matches
         ) {
           sessionStorage.setItem("dlf-entered", "1");
-          // CSS owns the 2.5 s sequence; readiness of the poster never shortens it.
+          // CSS owns the 3.5 s sequence; readiness of the poster never shortens it.
           const finish = () => {
             document.documentElement.classList.remove("projection-intro");
             window.clearTimeout(safetyTimer);
@@ -93,7 +93,7 @@ const links = [
             if (motionPreference.matches) finish();
           };
           // Emergency exit only: comfortably after the full mask has opened.
-          const safetyTimer = window.setTimeout(finish, 4500);
+          const safetyTimer = window.setTimeout(finish, 5500);
           document.addEventListener("animationend", onAnimationEnd);
           document.addEventListener("click", onSkip);
           motionPreference.addEventListener("change", onPreference);

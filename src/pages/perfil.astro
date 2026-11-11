@@ -24,7 +24,9 @@ import { localPath, profile } from "../data/portfolio";
           fetchpriority="high"
         />
       </figure><div class="profile-copy">
-        <p class="profile-biography">{profile.biography}</p><a
+        <div class="profile-biography">
+          {profile.biography.map((paragraph) => <p>{paragraph}</p>)}
+        </div><a
           class="line-link"
           href={localPath("obra/")}>Explorar su obra</a
         ><ContactDetails />

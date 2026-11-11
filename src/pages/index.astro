@@ -22,8 +22,8 @@ const selected = ["comezon", "mujer-muneca", "azul"].map(
       />
       <video
         class="hero-loop"
-        data-mobile={localPath("media/hero-mobile.mp4?v=20261111-hq")}
-        data-desktop={localPath("media/hero-desktop.mp4?v=20261111-hq")}
+        data-mobile={localPath("media/hero-mobile.mp4?v=20261111-focus")}
+        data-desktop={localPath("media/hero-desktop.mp4?v=20261111-focus")}
         muted
         loop
         playsinline
@@ -38,10 +38,9 @@ const selected = ["comezon", "mujer-muneca", "azul"].map(
     </div>
     <a class="hero-access" href={localPath("obra/")}>Explorar la obra</a>
     <div class="hero-bottom">
-      <span class="hero-caption-label">Imágenes del archivo</span><button
-        class="hero-pause"
-        hidden>Pausar video</button
-      ><a href="#seleccion">Ver selección</a>
+      <button class="hero-pause" hidden>Pausar video</button><a
+        href="#seleccion">Ver selección</a
+      >
     </div>
   </section>
   <section id="seleccion" class="home-selection container">

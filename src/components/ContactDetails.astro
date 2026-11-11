@@ -13,14 +13,7 @@ import { profile } from "../data/portfolio";
   <div>
     <span class="eyebrow">Correo</span>{
       profile.emailProvisional ? (
-        <>
-          <>
-            <span class="email-address">{profile.email}</span>
-            <span class="provisional">
-              Provisional · recepción pendiente de confirmar
-            </span>
-          </>
-        </>
+        <span class="email-address">{profile.email}</span>
       ) : (
         <a href={`mailto:${profile.email}`}>{profile.email}</a>
       )

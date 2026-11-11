@@ -32,9 +32,12 @@ export interface Project {
 
 export const profile = {
   name: "David López Félix",
-  biography: "David López Félix es estudiante de cine.",
-  email: "david@contacto.com",
-  emailProvisional: true,
+  biography: [
+    "David López Félix es estudiante de cine en CENTRO, con especial interés en el sonido, la fotografía y la narrativa audiovisual. Le apasiona explorar las distintas formas en que una imagen, un encuadre o un sonido pueden construir atmósferas, transmitir emociones y contar historias.",
+    "Su trabajo parte de la curiosidad por experimentar con el lenguaje cinematográfico y encontrar nuevas maneras de mirar y representar el mundo.",
+  ],
+  email: "dlopezf@centro.edu.mx",
+  emailProvisional: false,
   socialLinks: [
     { label: "@david.lf12", url: "https://www.instagram.com/david.lf12/" },
   ],

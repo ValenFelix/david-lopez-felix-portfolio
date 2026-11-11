@@ -17,14 +17,14 @@ Los MP4 usan faststart, píxeles yuv420p y audio AAC. No se fuerza 24 fps ni se 
 
 ## Elementos decorativos
 
-- Hero escritorio: montaje de 12 s, 1280×720, 8 478 241 bytes, bitrate medio 5,65 Mb/s, sin audio.
-- Hero móvil: montaje de 12 s, 540×720, 3 257 199 bytes, bitrate medio 2,17 Mb/s, sin audio; encuadres propios por plano que conservan los rostros.
+- Hero escritorio: montaje de 12 s, 1920×1080, 20 121 267 bytes, bitrate medio 13,41 Mb/s, sin audio.
+- Hero móvil: montaje de 12 s, 1080×1440, 13 171 927 bytes, bitrate medio 8,78 Mb/s, sin audio; encuadres propios por plano que conservan los rostros.
 - Seis previews de 6 s, sin audio: entre 82 157 y 302 376 bytes cada uno. Solo un preview activo, cargado mediante interacción y pausado al salir de pantalla.
 - 28 fotogramas WebP del rework: 1 406 704 bytes agregados. Las portadas incluyen versiones de 640 y 1280 px; fuentes de 1080p también tienen 1920 px. No se utiliza el fotograma inicial ni se generan imágenes con IA.
 
-Los vídeos agregados ocupan 360 073 107 bytes, incluyendo loops, previews, completas y alternativa de Doble. El build medido tras mejorar los heroes ocupa aproximadamente 362,9 MB, bastante por debajo de 1 GB; su archivo mayor ocupa 58 650 588 bytes. Los presupuestos no sustituyen el límite mensual de transferencia de Pages: si aumenta la audiencia, se puede sustituir la fuente completa por alojamiento audiovisual externo sin rehacer las fichas.
+Los vídeos agregados ocupan 381 630 861 bytes, incluyendo loops, previews, completas y alternativa de Doble. El build ocupa aproximadamente 384,5 MB, por debajo de 1 GB; su archivo mayor ocupa 58 650 588 bytes. Los presupuestos no sustituyen el límite mensual de transferencia de Pages: si aumenta la audiencia, se puede sustituir la fuente completa por alojamiento audiovisual externo sin rehacer las fichas.
 
-La revisión de nitidez comparó originales y derivados en los mismos cuatro momentos del montaje. Las fuentes son 1280×720: el recorte vertical dispone de 540×720 píxeles reales. El móvil anterior reducía ese recorte a 480×640 y lo comprimía con CRF23; combinado con la ampliación de `object-fit: cover` en pantallas de alta densidad, perdía detalle. Ambos montajes se regeneraron directamente de los originales con H.264/yuv420p, CRF14, preset slow y faststart, sin reescalado, sharpening ni IA. No se usaron las películas optimizadas como fuente. Aumentar el recorte a 900–1080 px sin nuevas fuentes habría sido una ampliación artificial. Se conservan selección, encuadre, duración y colores; 358 archivos restantes de medios e imágenes tienen SHA256 idéntico, incluidas películas, previews y fotografía.
+La comparación del montaje anterior con las fuentes suministradas en los mismos instantes dio una similitud estructural de 0,990–0,994. La suavidad restante provenía del foco de algunas tomas y de ampliar el recorte de 540×720 a 1170×1572 píxeles en la prueba móvil de alta densidad. Se eligieron planos más cercanos y mejor enfocados de Azul, Mujer muñeca y Comezón; se mantuvo el de Doble. Se exportó directamente desde las copias suministradas de 1280×720, con un escalado Spline36 para reducir el remuestreo en pantalla. Las dimensiones de salida no representan resolución nativa adicional. Ambas versiones usan H.264/yuv420p, CRF14, preset slow, 30 fps y faststart, sin realce artificial ni IA. No se usaron las películas optimizadas para la web como fuente.
 
 ## Criterio editorial
 
