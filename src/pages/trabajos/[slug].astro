@@ -20,7 +20,9 @@ const next = projects[(index + 1) % projects.length];
   <article class="project-page container">
     <a class="back-link" href={localPath("obra/")}>Volver al archivo</a>
     <div class="project-title-row">
-      <h1>{project.title}</h1><span class="eyebrow"
+      <h1
+        class:list={{ "multiscript-title": project.titleFont === "multiscript" }}
+      >{project.title}</h1><span class="eyebrow"
         >{String(index + 1).padStart(2, "0")} / {
           String(projects.length).padStart(2, "0")
         }</span
@@ -45,9 +47,7 @@ const next = projects[(index + 1) % projects.length];
     {
       !project.titleConfirmed && (
         <p class="small muted title-note">
-          {project.slug === "pieza-audiovisual"
-            ? "Pieza audiovisual es una denominación editorial. El título original está pendiente de confirmación."
-            : "Denominación editorial a partir del archivo original."}
+          Denominación editorial a partir del archivo original.
         </p>
       )
     }
@@ -72,7 +72,9 @@ const next = projects[(index + 1) % projects.length];
       )
     }
     <a class="next-project" href={localPath(`trabajos/${next.slug}/`)}
-      ><span class="eyebrow">Siguiente obra</span><span>{next.title}</span></a
+      ><span class="eyebrow">Siguiente obra</span><span
+        class:list={{ "multiscript-title": next.titleFont === "multiscript" }}
+      >{next.title}</span></a
     >
   </article>
 </Layout>

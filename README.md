@@ -14,7 +14,9 @@ La base se configura en `astro.config.mjs`. `SITE_BASE=/` permite otra raíz, pe
 
 Bodoni Moda y Manrope autoalojadas; azul tinta, marfil y acentos naranja. La portada utiliza un montaje silencioso de doce segundos a partir de películas suministradas. La selección editorial de tres obras es independiente del orden de los originales. Obra contiene seis portadas auténticas distintas. La apertura conserva su diseño y dura 3,5 segundos: 0,3 de presentación y 3,2 de apertura de máscara. Se completa mediante el evento de fin de animación, independientemente de la carga del póster; su seguridad excepcional es de 5,5 segundos. Se puede omitir desde el principio, aparece una vez por sesión y muestra la página inmediatamente con movimiento reducido. La navegación funciona sin JavaScript. Los enlaces utilizan texto y subrayados, sin flechas ni símbolos personalizados de reproducción.
 
-`src/data/portfolio.ts` centraliza la biografía suministrada para el perfil, los títulos, estado editorial, duración, créditos comprobados, imágenes, reproductores y contacto. Los títulos pendientes llevan una nota editorial en su ficha. Los roles publicados se comprobaron en créditos de los originales; los años y sinopsis desconocidos permanecen vacíos.
+`src/data/portfolio.ts` centraliza la biografía suministrada para el perfil, los títulos, estado editorial, duración, créditos comprobados, imágenes, reproductores y contacto. Los títulos pendientes llevan una nota editorial en su ficha. Los roles publicados se comprobaron en créditos de los originales o fueron confirmados por David; los años y sinopsis desconocidos permanecen vacíos.
+
+El nombre de la portada utiliza EB Garamond 500; el resto de títulos conserva Bodoni Moda. Solo `люθρonske々` emplea Noto Serif con respaldo Noto Serif JP para el símbolo final. Estas fuentes se autoalojan con los caracteres necesarios. Los títulos confirmados `Martés` (Dirección y guion) y `люθρonske々` conservan respectivamente los slugs `tallas` y `pieza-audiovisual`, y todos sus medios originales asociados.
 
 La fotografía real conserva identidad y composición. Se redimensionó y comprimió a WebP sin IA generativa ni retoque facial. Los fotogramas conservan el color del material suministrado.
 
@@ -26,7 +28,7 @@ Instagram: https://www.instagram.com/david.lf12/ . El correo oficial es `dlopezf
 
 Los originales están fuera del repositorio y no se modifican. Se permiten únicamente derivados web en `public/media/`, sin Git LFS. Los manifiestos públicos contienen rutas relativas, tamaños, duraciones y procedencia temporal de fotogramas, sin rutas locales privadas, cookies ni inventarios de Drive.
 
-Las seis películas completas están integradas: cinco MP4 (Azul, Comezón, Mujer muñeca, Tallas y la pieza audiovisual) y Doble mediante HLS de vídeo bajo demanda. Doble conserva sus 30:41 con 307 segmentos de unos seis segundos: se solicitan progresivamente al reproducir y al buscar. El fragmento MP4 de 30 s permanece como alternativa explícita si HLS no es compatible o falla. Nunca se presenta ese fragmento como película completa.
+Las seis películas completas están integradas: cinco MP4 (Azul, Comezón, Mujer muñeca, Martés y люθρonske々) y Doble mediante HLS de vídeo bajo demanda. Doble conserva sus 30:41 con 307 segmentos de unos seis segundos: se solicitan progresivamente al reproducir y al buscar. El fragmento MP4 de 30 s permanece como alternativa explícita si HLS no es compatible o falla. Nunca se presenta ese fragmento como película completa.
 
 Los MP4 usan H.264, AAC, píxeles compatibles y faststart; conservan proporción y cadencia. Las películas no se solicitan hasta pulsar reproducir. Solo se activa un preview decorativo a la vez. Hero y previews no tienen audio; se pausan fuera de pantalla o con la pestaña oculta. El reproductor nativo admite pausa, búsqueda, volumen y pantalla completa, y libera el medio al cerrar.
 

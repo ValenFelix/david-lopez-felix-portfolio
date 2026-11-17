@@ -18,6 +18,7 @@ export interface Project {
   slug: string;
   title: string;
   titleConfirmed: boolean;
+  titleFont?: "multiscript";
   poster: string | null;
   posterAlt: string | null;
   role: string | null;
@@ -33,8 +34,8 @@ export interface Project {
 export const profile = {
   name: "David López Félix",
   biography: [
-    "David López Félix es estudiante de cine en CENTRO, con especial interés en el sonido, la fotografía y la narrativa audiovisual. Le apasiona explorar las distintas formas en que una imagen, un encuadre o un sonido pueden construir atmósferas, transmitir emociones y contar historias.",
-    "Su trabajo parte de la curiosidad por experimentar con el lenguaje cinematográfico y encontrar nuevas maneras de mirar y representar el mundo.",
+    "David López Félix estudia cine en CENTRO. Le interesan especialmente la dirección, el sonido, la fotografía, el guion y la producción. Para él, el cine es una de las formas más honestas de transmitir emociones.",
+    "Disfruta trabajar con otras personas, aprender de sus experiencias y descubrir nuevas maneras de contar historias a través de la imagen y el sonido.",
   ],
   email: "dlopezf@centro.edu.mx",
   emailProvisional: false,
@@ -48,11 +49,12 @@ export const profile = {
 export const projects: Project[] = [
   {
     slug: "pieza-audiovisual",
-    title: "Pieza audiovisual",
-    titleConfirmed: false,
+    title: "люθρonske々",
+    titleConfirmed: true,
+    titleFont: "multiscript",
     poster: "images/rework/pieza-audiovisual-1280.webp",
     posterAlt:
-      "Radiografía de un tórax superpuesta a un paisaje urbano, fotograma de la pieza audiovisual.",
+      "Radiografía de un tórax superpuesta a un paisaje urbano, fotograma de люθρonske々.",
     role: null,
     year: null,
     duration: "00:55",
@@ -166,11 +168,11 @@ export const projects: Project[] = [
   },
   {
     slug: "tallas",
-    title: "Tallas",
-    titleConfirmed: false,
+    title: "Martés",
+    titleConfirmed: true,
     poster: "images/rework/tallas-1280.webp",
     posterAlt: "Dos hombres sentados en una habitación iluminada tenuemente.",
-    role: null,
+    role: "Dirección y guion",
     year: null,
     duration: "03:13",
     synopsis: null,

@@ -97,6 +97,10 @@ if (dialog && screen && title && status && external) {
       for (const video of document.querySelectorAll("video")) video.pause();
       trigger = button;
       title.textContent = button.dataset.title ?? "Película";
+      title.classList.toggle(
+        "multiscript-title",
+        button.dataset.titleFont === "multiscript",
+      );
       status.textContent = "Cargando reproductor…";
       external.hidden = true;
       external.removeAttribute("href");
