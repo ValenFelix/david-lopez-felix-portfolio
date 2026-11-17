@@ -7,12 +7,14 @@ interface Props {
   description?: string;
   image?: string;
   home?: boolean;
+  compactFooter?: boolean;
 }
 const {
   title = `${profile.name} — Cine`,
   description = "Películas y piezas audiovisuales de David López Félix.",
   image = "images/david-1080.webp",
   home = false,
+  compactFooter = false,
 } = Astro.props;
 const canonical = new URL(Astro.url.pathname, Astro.site);
 const links = [
@@ -41,7 +43,7 @@ const links = [
     <link rel="icon" href={localPath("favicon.svg")} type="image/svg+xml" />
     <link rel="sitemap" href={localPath("sitemap.xml")} />
     <link rel="stylesheet" href={localPath("fonts/manrope.css")} />
-    <link rel="stylesheet" href={localPath("fonts/bodoni.css")} />
+    <link rel="stylesheet" href={localPath("fonts/eb-garamond-editorial.css")} />
     {home && <link rel="stylesheet" href={localPath("fonts/eb-garamond.css")} />}
     <link rel="stylesheet" href={localPath("fonts/project-title.css")} />
     <noscript
@@ -152,6 +154,18 @@ const links = [
           ))
         }
       </nav>
+      {
+        home && (
+          <details class="motion-settings" data-motion-settings hidden>
+            <summary>Movimiento</summary>
+            <div class="motion-panel">
+              <button class="text-button" data-hero-pause aria-pressed="false">
+                Pausar movimiento
+              </button>
+            </div>
+          </details>
+        )
+      }
       <button
         class="menu-toggle"
         aria-haspopup="dialog"
@@ -167,7 +181,18 @@ const links = [
         >
       </div><nav aria-label="Navegación móvil">
         {links.map((link) => <a href={localPath(link.path)}>{link.label}</a>)}
-      </nav><a
+      </nav>
+      {
+        home && (
+          <div class="menu-motion" data-motion-settings hidden>
+            <p class="eyebrow">Movimiento de portada</p>
+            <button class="text-button" data-hero-pause aria-pressed="false">
+              Pausar movimiento
+            </button>
+          </div>
+        )
+      }
+      <a
         class="menu-instagram"
         href={profile.socialLinks[0].url}
         target="_blank"
@@ -175,12 +200,19 @@ const links = [
       >
     </dialog>
     <main id="contenido"><slot /></main>
-    <footer class="site-footer container">
-      <div class="footer-top">
-        <a href={localPath("contacto/")} class="footer-invitation"
-          >Hablemos<br />de cine<span class="accent">.</span></a
-        ><ContactDetails />
-      </div>
+    <footer
+      class:list={["site-footer container", { "compact-footer": compactFooter }]}
+    >
+      {
+        !compactFooter && (
+          <div class="footer-top">
+            <a href={localPath("contacto/")} class="footer-invitation">
+              Hablemos<br />de cine<span class="accent">.</span>
+            </a>
+            <ContactDetails />
+          </div>
+        )
+      }
       <div class="footer-bottom">
         <a href={localPath()}>David López Félix</a><span
           >Cine / {new Date().getFullYear()}</span

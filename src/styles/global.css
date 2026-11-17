@@ -44,7 +44,8 @@ button {
   -webkit-tap-highlight-color: transparent;
 }
 a:focus-visible,
-button:focus-visible {
+button:focus-visible,
+summary:focus-visible {
   outline: 2px solid var(--orange);
   outline-offset: 6px;
 }
@@ -69,7 +70,7 @@ h1,
 h2,
 h3,
 .footer-invitation {
-  font-family: "Bodoni Moda", Georgia, serif;
+  font-family: "EB Garamond", Georgia, serif;
   font-optical-sizing: auto;
 }
 button {
@@ -230,12 +231,51 @@ a:hover {
   min-height: 92px;
   border-bottom: 1px solid var(--line);
   font:
-    500 52px "Bodoni Moda",
+    500 52px "EB Garamond",
     serif;
 }
 .menu-instagram {
   font-size: 14px;
   min-height: 44px;
+}
+.motion-settings {
+  position: absolute;
+  right: var(--gutter);
+  top: 70px;
+  color: var(--muted);
+  font-size: 11px;
+}
+.motion-settings summary {
+  min-height: 32px;
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+  list-style: none;
+}
+.motion-settings summary::-webkit-details-marker {
+  display: none;
+}
+.motion-panel {
+  position: absolute;
+  right: 0;
+  top: 100%;
+  width: max-content;
+  padding: 8px 16px;
+  border: 1px solid var(--line);
+  background: var(--navy);
+}
+.motion-panel .text-button {
+  font-size: 12px;
+}
+.menu-motion {
+  margin-bottom: 20px;
+}
+.menu-motion .eyebrow {
+  color: var(--muted);
+  font-size: 10px;
+}
+.menu-motion .text-button {
+  padding-inline: 0;
 }
 .cinematic-hero {
   position: relative;
@@ -319,30 +359,6 @@ a:hover {
 }
 .hero-access:is(:hover, :focus-visible)::after {
   transform: scaleX(1);
-}
-.hero-bottom {
-  position: absolute;
-  bottom: 30px;
-  left: var(--gutter);
-  right: var(--gutter);
-  display: flex;
-  align-items: center;
-  gap: 32px;
-  justify-content: flex-end;
-  font-size: 11px;
-  letter-spacing: 0.06em;
-}
-.hero-pause {
-  border: 0;
-  background: none;
-  min-height: 44px;
-  font-size: 12px;
-}
-.hero-bottom > a {
-  font-size: 12px;
-  min-height: 44px;
-  display: inline-flex;
-  align-items: center;
 }
 .home-selection {
   padding-top: 112px;
@@ -584,6 +600,13 @@ a:hover {
   border-top: 1px solid var(--line);
   padding-top: 64px;
 }
+.home-page .site-footer {
+  border-top: 0;
+}
+.site-footer.compact-footer {
+  border-top: 0;
+  padding-top: 0;
+}
 .footer-top {
   display: grid;
   grid-template-columns: 2fr 1fr;
@@ -593,6 +616,7 @@ a:hover {
 }
 .footer-invitation {
   font-size: clamp(44px, 5.7vw, 86px);
+  font-weight: 500;
   letter-spacing: -0.025em;
   line-height: 1.1;
   position: relative;
@@ -710,7 +734,7 @@ a:hover {
 }
 .next-project > span:not(.eyebrow) {
   font:
-    500 clamp(32px, 4vw, 60px) "Bodoni Moda",
+    500 clamp(32px, 4vw, 60px) "EB Garamond",
     serif;
 }
 .not-found {
@@ -756,12 +780,12 @@ a:hover {
 }
 .cinema-header h2 {
   font:
-    500 28px "Bodoni Moda",
+    500 28px "EB Garamond",
     serif;
 }
 .project-title-row .multiscript-title,
 .project-caption .multiscript-title,
-.next-project > .multiscript-title,
+.next-project > span.multiscript-title,
 .cinema-header .multiscript-title {
   font-family: "Noto Serif", "Noto Serif JP", serif;
 }
@@ -1000,6 +1024,9 @@ a:hover {
   .desktop-nav {
     display: none;
   }
+  .motion-settings {
+    display: none;
+  }
   .menu-toggle {
     display: flex;
     align-items: center;
@@ -1052,17 +1079,6 @@ a:hover {
   }
   .hero-picture video {
     object-position: center;
-  }
-  .hero-bottom {
-    bottom: 12px;
-    gap: 12px;
-    font-size: 9px;
-  }
-  .hero-bottom > a {
-    display: none;
-  }
-  .hero-pause {
-    font-size: 10px;
   }
   .home-selection {
     padding-block: 64px;

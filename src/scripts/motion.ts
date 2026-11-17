@@ -24,13 +24,28 @@ if (menu && menuTrigger) {
 }
 
 const hero = document.querySelector<HTMLVideoElement>(".hero-loop");
-const pause = document.querySelector<HTMLButtonElement>(".hero-pause");
+const pauseButtons = document.querySelectorAll<HTMLButtonElement>(
+  "[data-hero-pause]",
+);
+const motionSettings = document.querySelectorAll<HTMLElement>(
+  "[data-motion-settings]",
+);
 let heroInView = true;
 let userPaused = false;
-if (hero && pause) {
+if (hero && pauseButtons.length) {
+  let heroFailed = false;
+  const syncControls = () => {
+    for (const settings of motionSettings)
+      settings.hidden = !allowMotion() || heroFailed;
+    for (const button of pauseButtons) {
+      button.textContent = userPaused ? "Reanudar movimiento" : "Pausar movimiento";
+      button.setAttribute("aria-pressed", String(userPaused));
+    }
+  };
   const play = async () => {
     if (
       !allowMotion() ||
+      heroFailed ||
       userPaused ||
       !heroInView ||
       document.hidden ||
@@ -44,27 +59,36 @@ if (hero && pause) {
           : hero.dataset.desktop) ?? "";
     try {
       await hero.play();
-    } catch {
-      pause.textContent = "Reanudar video";
+    } catch (error) {
+      if (error instanceof DOMException && error.name === "NotAllowedError")
+        userPaused = true;
+      syncControls();
     }
   };
   hero.addEventListener("playing", () => {
     hero.classList.add("is-playing");
-    pause.textContent = "Pausar video";
-  });
-  hero.addEventListener("pause", () => {
-    pause.textContent = "Reanudar video";
+    syncControls();
   });
   hero.addEventListener("error", () => {
     hero.classList.remove("is-playing");
-    pause.hidden = true;
+    heroFailed = true;
+    syncControls();
   });
-  pause.hidden = !allowMotion();
-  pause.addEventListener("click", () => {
-    userPaused = !hero.paused;
-    if (userPaused) hero.pause();
-    else void play();
-  });
+  syncControls();
+  for (const button of pauseButtons) {
+    button.addEventListener("click", () => {
+      userPaused = !userPaused;
+      if (menu?.open) menu.close();
+      const options = button.closest("details");
+      if (options) {
+        options.open = false;
+        options.querySelector("summary")?.focus();
+      }
+      if (userPaused) hero.pause();
+      else void play();
+      syncControls();
+    });
+  }
   const visibility = new IntersectionObserver(
     (entries) => {
       heroInView = entries[0].isIntersecting;
@@ -85,7 +109,7 @@ if (hero && pause) {
     void play();
   });
   reduced.addEventListener("change", () => {
-    pause.hidden = !allowMotion();
+    syncControls();
     if (!allowMotion()) hero.pause();
     else void play();
   });
